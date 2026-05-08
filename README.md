@@ -303,7 +303,7 @@ performance.py
 cost.py
 surplus_value.py
 visuals.py
-player_data_audit.py
+playerdata_audit.py
 player_value.py
 player_visuals.py
 insight_summary.py
@@ -351,7 +351,7 @@ Main outputs:
 
 Creates team-level charts.
 
-### `player_data_audit.py`
+### `playerdata_audit.py`
 
 Audits the player-level datasets before modeling.
 
@@ -399,7 +399,7 @@ performance.py
 cost.py
 surplus_value.py
 visuals.py
-player_data_audit.py
+playerdata_audit.py
 player_value.py
 player_visuals.py
 insight_summary.py
