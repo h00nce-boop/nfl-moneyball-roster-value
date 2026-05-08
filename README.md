@@ -16,6 +16,10 @@ The project evaluates all 32 NFL teams from 2021–2025, then focuses more close
 - Baltimore Ravens — contender benchmark
 - Detroit Lions — young-core benchmark
 
+## Project Status
+
+This is an ongoing portfolio project. The current version builds a team-level surplus value model, a skill-player value model, and an interactive Streamlit dashboard. Future iterations will expand the model to include defensive players, offensive linemen, injury adjustments, rookie-contract status, and draft capital analysis.
+
 ## Core Question
 
 Can we identify roster-building inefficiencies using public NFL data?

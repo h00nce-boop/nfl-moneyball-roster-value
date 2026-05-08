@@ -1,7 +1,9 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  7 20:17:02 2026
+Creates team-level visuals for the NFL Moneyball project.
+
+Outputs are saved to:
+- outputs/figures/
 
 @author: hannah
 """

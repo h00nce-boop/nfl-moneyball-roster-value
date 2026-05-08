@@ -1,7 +1,12 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  7 18:05:12 2026
+Builds team-level performance metrics for the NFL Moneyball project.
+
+Outputs:
+- outputs/team_value_2021_2025.csv
+- outputs/team_value_2025.csv
+- outputs/focus_team_performance_2021_2025.csv
+- outputs/focus_team_rank_trend_2021_2025.csv
 
 @author: hannah
 """

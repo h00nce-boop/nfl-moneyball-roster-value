@@ -1,7 +1,9 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  7 21:07:25 2026
+Creates summary tables for the final writeup and dashboard.
+
+Outputs are saved to:
+- outputs/summary/
 
 @author: hannah
 """

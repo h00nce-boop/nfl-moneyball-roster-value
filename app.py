@@ -1,7 +1,12 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  7 21:24:06 2026
+Streamlit dashboard for the NFL Moneyball project.
+
+The dashboard allows users to explore team-level surplus value, focus-team
+trends, player-level skill-position value, and league-wide player bargains.
+
+Run with:
+streamlit run app.py
 
 @author: hannah
 """

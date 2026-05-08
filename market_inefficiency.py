@@ -1,7 +1,12 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  7 21:08:55 2026
+Analyzes potential market inefficiencies by position and contract cost tier.
+
+This script summarizes which offensive skill-player archetypes generate the
+most surplus value across the 2021-2025 sample.
+
+Outputs are saved to:
+- outputs/summary/
 
 @author: hannah
 """

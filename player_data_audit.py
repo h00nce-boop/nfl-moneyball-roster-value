@@ -1,7 +1,13 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  7 20:51:35 2026
+Builds the player-level skill-position surplus value model.
+
+The first version focuses on QB, RB, WR, and TE. Player value is calculated by
+comparing production rank against contract cost rank within each position group.
+
+Outputs:
+- outputs/player_value_skill_2021_2025.csv
+- outputs/focus_player_value_skill_2021_2025.csv
 
 @author: hannah
 """

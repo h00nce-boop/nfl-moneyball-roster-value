@@ -1,7 +1,14 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  7 20:04:42 2026
+Builds the team-level surplus value model.
+
+This script merges team performance metrics with contract cost metrics and
+calculates surplus value as performance relative to cost.
+
+Outputs:
+- outputs/team_surplus_2021_2025.csv
+- outputs/team_surplus_2025.csv
+- outputs/focus_team_surplus_2021_2025.csv
 
 @author: hannah
 """

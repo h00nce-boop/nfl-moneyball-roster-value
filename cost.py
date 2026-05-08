@@ -1,7 +1,14 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  7 18:43:41 2026
+Builds team-level contract cost metrics for the NFL Moneyball project.
+
+This script flattens yearly contract data, cleans team names, removes duplicate
+player-team-season rows, and aggregates contract cost by team-season.
+
+Outputs:
+- outputs/contracts_flat_2021_2025.csv
+- outputs/team_cost_2021_2025.csv
+- outputs/focus_team_cost_2021_2025.csv
 
 @author: hannah
 """

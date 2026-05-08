@@ -1,7 +1,9 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  7 21:05:10 2026
+Creates player-level visuals for the NFL Moneyball project.
+
+Outputs include Eagles skill-player value charts, league-wide bargain charts,
+and focus-team skill-player summaries.
 
 @author: hannah
 """
