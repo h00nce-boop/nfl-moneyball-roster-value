@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu May  7 21:09:49 2026
-
-@author: hannah
-"""
-
 # NFL Moneyball: Finding Roster Surplus Value Under the Salary Cap
 
 ## Project Overview
