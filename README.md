@@ -45,6 +45,7 @@ For the Eagles, the early finding is:
 > The Eagles’ roster-building edge is not that every star is cheap. It is that they combine expensive stars with enough surplus-value contributors to keep the overall roster efficient.
 
 ## Dashboard Preview
+Live dashboard: [View the Streamlit app](https://nfl-moneyball-roster-value.streamlit.app/)
 
 This project includes a Streamlit dashboard for exploring team-level and player-level surplus value.
 
