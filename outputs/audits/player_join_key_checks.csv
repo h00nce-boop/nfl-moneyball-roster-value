@@ -1,0 +1,13 @@
+check,result
+player_stats_has_player_id,True
+player_stats_has_player_name,True
+player_stats_has_recent_team,False
+player_stats_has_team,True
+snap_counts_has_player_id,False
+snap_counts_has_gsis_id,False
+snap_counts_has_team,True
+rosters_has_player_id,False
+rosters_has_team,True
+contracts_has_player,True
+contracts_has_team_abbr,True
+contracts_has_cap_number,True

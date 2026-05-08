@@ -1,0 +1,26 @@
+season,team,team_role,overall_rank,cap_cost_rank,surplus_rank_gap,surplus_value_rank,surplus_tier
+2021,PHI,Eagles - main case study,12.5,30.0,17.5,3.0,Strong surplus value
+2021,DET,Lions - young-core benchmark,28.0,31.0,3.0,14.0,Fair value
+2021,BAL,Ravens - contender benchmark,22.0,22.0,0.0,17.5,Fair value
+2021,NYG,Giants - rebuild comparison,27.0,25.0,-2.0,20.0,Fair value
+2021,CLE,Browns - cap cautionary tale,23.0,12.0,-11.0,27.0,Major underperformance
+2022,PHI,Eagles - main case study,3.0,27.0,24.0,1.0,Strong surplus value
+2022,BAL,Ravens - contender benchmark,7.0,25.0,18.0,3.0,Strong surplus value
+2022,NYG,Giants - rebuild comparison,21.0,31.0,10.0,8.0,Strong surplus value
+2022,CLE,Browns - cap cautionary tale,21.0,29.0,8.0,10.0,Positive value
+2022,DET,Lions - young-core benchmark,14.0,20.0,6.0,13.0,Positive value
+2023,DET,Lions - young-core benchmark,8.0,24.0,16.0,6.5,Strong surplus value
+2023,BAL,Ravens - contender benchmark,2.0,12.0,10.0,9.0,Strong surplus value
+2023,CLE,Browns - cap cautionary tale,10.0,20.0,10.0,9.0,Strong surplus value
+2023,PHI,Eagles - main case study,18.5,27.0,8.5,11.0,Positive value
+2023,NYG,Giants - rebuild comparison,29.5,15.0,-14.5,28.0,Major underperformance
+2024,PHI,Eagles - main case study,2.0,28.0,26.0,3.0,Strong surplus value
+2024,DET,Lions - young-core benchmark,1.0,19.0,18.0,5.0,Strong surplus value
+2024,BAL,Ravens - contender benchmark,8.0,13.0,5.0,10.0,Positive value
+2024,NYG,Giants - rebuild comparison,28.5,27.0,-1.5,14.5,Fair value
+2024,CLE,Browns - cap cautionary tale,20.5,17.0,-3.5,17.5,Fair value
+2025,PHI,Eagles - main case study,11.0,31.0,20.0,3.0,Strong surplus value
+2025,BAL,Ravens - contender benchmark,16.0,24.0,8.0,8.0,Positive value
+2025,CLE,Browns - cap cautionary tale,21.0,25.0,4.0,13.0,Positive value
+2025,DET,Lions - young-core benchmark,6.0,6.0,0.0,18.5,Fair value
+2025,NYG,Giants - rebuild comparison,24.5,10.0,-14.5,27.0,Major underperformance

@@ -1,0 +1,6 @@
+team,team_role,avg_overall_rank,avg_cap_cost_rank,avg_surplus_gap,best_surplus_gap,worst_surplus_gap
+PHI,Eagles - main case study,9.4,26.6,17.2,22.0,5.5
+DET,Lions - young-core benchmark,11.4,18.0,6.6,19.0,2.0
+BAL,Ravens - contender benchmark,11.0,13.0,2.0,12.0,-4.0
+CLE,Browns - cap cautionary tale,19.1,15.4,-3.7,5.0,-17.0
+NYG,Giants - rebuild comparison,26.1,20.6,-5.5,6.0,-18.5

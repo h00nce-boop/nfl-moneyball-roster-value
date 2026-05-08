@@ -1,0 +1,5 @@
+dataset,rows,columns,type
+player_stats,94845,115,DataFrame
+snap_counts,132616,16,DataFrame
+rosters,15538,36,DataFrame
+contracts_flat,13032,38,DataFrame
