@@ -1,0 +1,11 @@
+season,overall_confidence,contract_confidence,sample_confidence,player_count
+2021,high,contract_matched,normal_sample,242
+2021,low,missing_contract,normal_sample,3
+2022,high,contract_matched,normal_sample,231
+2022,low,missing_contract,normal_sample,8
+2023,high,contract_matched,normal_sample,231
+2023,low,missing_contract,normal_sample,2
+2024,high,contract_matched,normal_sample,233
+2024,low,missing_contract,normal_sample,3
+2025,high,contract_matched,normal_sample,228
+2025,low,missing_contract,normal_sample,2

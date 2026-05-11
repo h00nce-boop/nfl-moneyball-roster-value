@@ -1,0 +1,26 @@
+player_name,team,position_final,production_score,total_epa,cap_number,production_rank_position,cost_rank_position,player_surplus_gap,player_value_tier,has_contract_match,has_missing_contract,contract_confidence,sample_confidence,overall_confidence
+Puka Nacua,LA,WR,281.28146136267435,125.03146136267434,1.091245,1.0,75.0,74.0,Major bargain,True,False,contract_matched,normal_sample,high
+Parker Washington,JAX,WR,100.1458392066828,28.295839206682796,1.078066,27.0,76.0,49.0,Major bargain,True,False,contract_matched,normal_sample,high
+Michael Wilson,ARI,WR,116.55218070236764,25.75218070236765,1.456217,18.0,64.0,46.0,Major bargain,True,False,contract_matched,normal_sample,high
+Kayshon Boutte,NE,WR,90.66034117618686,36.86034117618686,1.076816,31.0,77.0,46.0,Major bargain,True,False,contract_matched,normal_sample,high
+Ryan Flournoy,DAL,WR,76.1076776391556,29.107677639155597,0.906667,45.0,85.0,40.0,Major bargain,True,False,contract_matched,normal_sample,high
+George Pickens,DAL,WR,210.4427112801041,88.7427112801041,3.656,3.0,42.0,39.0,Major bargain,True,False,contract_matched,normal_sample,high
+Jaxon Smith-Njigba,SEA,WR,241.9190039093038,90.7190039093038,3.931993,2.0,39.0,37.0,Major bargain,True,False,contract_matched,normal_sample,high
+Chase Brown,CIN,RB,108.4795558652642,-14.570444134735812,1.101539,12.0,48.0,36.0,Major bargain,True,False,contract_matched,normal_sample,high
+Zay Flowers,BAL,WR,152.0338582026944,48.883858202694384,3.82812,7.0,41.0,34.0,Major bargain,True,False,contract_matched,normal_sample,high
+De'Von Achane,MIA,RB,148.46097509414986,3.8109750941498586,1.482941,6.0,39.0,33.0,Major bargain,True,False,contract_matched,normal_sample,high
+Jacory Croskey-Merritt,WAS,RB,64.4034335730453,-5.496566426954698,0.866357,28.0,60.0,32.0,Major bargain,True,False,contract_matched,normal_sample,high
+Tre Tucker,LV,WR,87.9493380499473,21.349338049947292,1.446568,33.0,65.0,32.0,Major bargain,True,False,contract_matched,normal_sample,high
+Jalen Coker,CAR,WR,58.80575627593813,21.855756275938127,0.811667,56.0,88.0,32.0,Major bargain,True,False,contract_matched,normal_sample,high
+Kyle Monangai,CHI,RB,63.25449328940423,-3.595506710595779,0.872035,29.0,59.0,30.0,Major bargain,True,False,contract_matched,normal_sample,high
+DeMario Douglas,NE,WR,67.3250093571227,27.175009357122683,1.063333,50.0,80.0,30.0,Major bargain,True,False,contract_matched,normal_sample,high
+Wan'Dale Robinson,NYG,WR,107.3345909378728,21.38459093787279,2.604371,23.0,52.0,29.0,Major bargain,True,False,contract_matched,normal_sample,high
+Troy Franklin,DEN,WR,78.36723052168705,8.067230521687042,1.188709,43.0,71.0,28.0,Major bargain,True,False,contract_matched,normal_sample,high
+Tyquan Thornton,KC,WR,61.89813281281208,26.24813281281208,1.040556,53.0,81.0,28.0,Major bargain,True,False,contract_matched,normal_sample,high
+AJ Barner,SEA,TE,95.82583467247532,35.175834672475304,1.148777,10.0,36.0,26.0,Major bargain,True,False,contract_matched,normal_sample,high
+Alec Pierce,IND,WR,135.67911305843583,55.77911305843583,4.151244,12.0,37.0,25.0,Major bargain,True,False,contract_matched,normal_sample,high
+Tez Johnson,TB,WR,54.28911757502706,15.089117575027055,0.870985,61.0,86.0,25.0,Major bargain,True,False,contract_matched,normal_sample,high
+Rashee Rice,KC,WR,78.68194884641753,17.88194884641753,1.324598,42.0,67.0,25.0,Major bargain,True,False,contract_matched,normal_sample,high
+Drake Maye,NE,QB,288.08507712224093,175.04507712224094,8.327219,1.0,25.0,24.0,Major bargain,True,False,contract_matched,normal_sample,high
+Tyrone Tracy Jr.,NYG,RB,62.65427693713083,-9.745723062869166,1.031588,30.0,54.0,24.0,Major bargain,True,False,contract_matched,normal_sample,high
+Luther Burden III,CHI,WR,84.55814341538935,32.35814341538935,1.993461,35.0,58.0,23.0,Major bargain,True,False,contract_matched,normal_sample,high

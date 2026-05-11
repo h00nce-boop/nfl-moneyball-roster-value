@@ -200,6 +200,21 @@ The project creates both team-level and player-level outputs.
 - `position_surplus_summary_2021_2025.csv`
 - `cost_tier_surplus_summary_2021_2025.csv`
 
+### Updated V2 Outputs
+
+The v2 confidence workflow saves improved player-value files in `outputs_v2/`:
+
+- `player_value_2021_2025_v2_confidence.csv`
+- `focus_player_value_2021_2025_v2_confidence.csv`
+- `player_value_diagnostics_2021_2025_v2_confidence.csv`
+
+Summary outputs are saved in `outputs_v2/summary/`, including:
+
+- `eagles_skill_player_summary_2025.csv`
+- `top_skill_player_bargains_2025.csv`
+- `player_data_quality_summary_2021_2025.csv`
+- `player_data_quality_diagnostics_2021_2025.csv`
+
 ## Visualizations
 
 The project creates several charts, including:
@@ -267,16 +282,6 @@ The broader Moneyball takeaway is:
 
 > The market pays heavily for proven production. The edge comes from identifying production before it becomes expensive.
 
-### 7. The Eagles show the contract-cycle effect
-
-The Eagles case study supports the broader market-efficiency finding. At quarterback, Philadelphia’s surplus value was highest when Jalen Hurts was inexpensive, then narrowed as his cap number increased. The QB surplus gap fell from +33.0 in 2022 to +3.0 in 2025 as the average cap number for the position rose.
-
-A similar pattern appears at wide receiver. The Eagles’ WR group produced strong average surplus value in 2022 and 2023, then remained positive but less extreme as the average cap number increased.
-
-This supports the project’s central thesis:
-
-> Surplus value is largest before the market fully prices the production.
-
 ## Eagles Case Study: Surplus Value Across the Contract Cycle
 
 The Eagles case study shows how surplus value changes as players move through the contract cycle.
@@ -293,6 +298,36 @@ This supports the project’s central thesis:
 
 The Eagles’ challenge going forward is not simply finding stars. It is continuously replacing lost surplus value as previously underpriced players become expensive.
 
+
+## V2 Update: Data Quality and Confidence Flags
+
+The second version of the player-value model adds data-quality and confidence flags to make the results more defensible.
+
+In the original version, missing public contract data could distort player rankings because missing cost information risked being treated like a true zero-dollar cost. In the updated version, missing contract values are kept as missing, and players are flagged based on whether they successfully matched to a public contract row.
+
+The updated player model now includes:
+
+- `has_contract_match`: whether the player matched to a contract record
+- `has_missing_contract`: whether the player is missing public contract data
+- `contract_confidence`: readable label for contract match quality
+- `meets_sample_threshold`: whether the player had enough usage to be ranked
+- `sample_confidence`: readable label for sample-size quality
+- `overall_confidence`: overall confidence label based on contract and sample-size flags
+
+Low-sample players are preserved in a diagnostic output file but excluded from the final ranked player-value table. This keeps the final rankings focused on players with meaningful usage while still making it possible to audit which players were excluded and why.
+
+The updated workflow creates two types of player outputs:
+
+1. Final ranked player-value outputs for qualifying QB/RB/WR/TE players.
+2. Diagnostic outputs that include all skill-position players before the sample-size filter.
+
+This improves interpretation because a player is no longer simply labeled as a bargain or overpay. The model can now distinguish between high-confidence results and results that may be affected by missing contract data or small samples.
+
+For example, a player with a positive surplus gap and high confidence can be interpreted as a stronger bargain candidate than a player with a similar gap but missing contract data.
+
+This update does not fully solve all limitations. The model still uses public contract data as a proxy, focuses only on QB/RB/WR/TE, and uses hand-built production-score weights. However, the confidence flags make those limitations more visible and prevent missing data from being treated as meaningful cost information.
+
+
 ## Project Files
 
 ```text
@@ -302,8 +337,10 @@ surplus_value.py
 visuals.py
 player_data_audit.py
 player_value.py
+player_value_v2_confidence.py
 player_visuals.py
 insight_summary.py
+insight_summary_v2_confidence.py
 market_inefficiency.py
 app.py
 ```
@@ -371,6 +408,12 @@ The first version focuses on:
 - WR
 - TE
 
+### `player_value_v2_confidence.py`
+
+Builds the updated player-level skill-position surplus value model with confidence and data-quality flags.
+
+This version preserves missing contract values as missing, flags contract match quality, identifies low-sample players, saves a diagnostic file before filtering, and creates final ranked player-value outputs for qualifying QB/RB/WR/TE players.
+
 ### `player_visuals.py`
 
 Creates player-level charts, including Eagles-specific player value charts.
@@ -378,6 +421,12 @@ Creates player-level charts, including Eagles-specific player value charts.
 ### `insight_summary.py`
 
 Creates clean summary tables for the final writeup and dashboard.
+
+### `insight_summary_v2_confidence.py`
+
+Creates updated summary tables using the v2 confidence player-value outputs.
+
+This file carries confidence labels into the Eagles player summary, top league-wide bargain summary, and data-quality summary files.
 
 ### `market_inefficiency.py`
 
@@ -389,7 +438,7 @@ Optional Streamlit dashboard for exploring the results interactively.
 
 ## How to Run the Project
 
-Run the files in this order:
+### Original Workflow
 
 ```text
 performance.py
@@ -408,6 +457,20 @@ Optional dashboard:
 ```bash
 streamlit run app.py
 ```
+Note: the current Streamlit dashboard primarily reflects the original workflow outputs. The v2 confidence outputs are saved separately and will be integrated into the dashboard in a future update.
+
+### V2 Confidence Workflow
+
+The v2 confidence workflow uses the existing team and contract outputs, then creates updated player-value and summary files with confidence flags.
+
+```text
+performance.py
+cost.py
+surplus_value.py
+player_value_v2_confidence.py
+insight_summary_v2_confidence.py
+```
+The v2 workflow saves updated player-value files in `outputs_v2/` and updated summary files in `outputs_v2/summary/`.
 
 ## Limitations
 
@@ -415,13 +478,14 @@ This model is a public-data approximation and should be interpreted as a decisio
 
 Key limitations:
 
-- Contract data is a public cost proxy, not audited official salary-cap accounting.
-- The player-level model currently focuses only on QB, RB, WR, and TE.
-- Offensive linemen and defensive players require different evaluation methods.
-- The production score is a simplified public-data metric.
-- The model does not fully account for injuries, scheme, coaching, or strength of schedule.
+- Public contract data is an approximation, not official audited salary-cap accounting.
+- Missing contract data can reduce confidence in some player rankings.
+- The player model currently covers only QB, RB, WR, and TE.
+- Defensive players and offensive linemen are not yet modeled.
+- Production-score weights are hand-built rather than statistically learned.
+- Rank gaps are intuitive but coarse and do not show the magnitude between players.
+- The model does not yet adjust for injuries, rookie-contract status, draft capital, scheme, teammates, coaching context, or strength of schedule.
 - Player value is ranked within position groups, so comparisons across positions should be made carefully.
-- Some public contract records require cleaning, deduplication, and ID matching.
 
 ## Future Improvements
 
@@ -452,4 +516,6 @@ The Billy Beane-style insight is not “avoid expensive players.” It is:
 
 > Find production before the market prices it as proven production.
 
-In NFL roster-building terms, the edge comes from identifying value one contract cycle early.
+The v2 confidence update makes this conclusion more defensible by separating high-confidence player rankings from results that may be affected by missing public contract data or small samples.
+
+In NFL roster-building terms, the edge comes from identifying value one contract cycle early while being honest about the limits of the available public data.
