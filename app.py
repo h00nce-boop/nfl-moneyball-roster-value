@@ -32,8 +32,10 @@ st.markdown(
 ## LOAD DATA ##
 team_surplus = pd.read_csv("outputs/team_surplus_2021_2025.csv")
 focus_team_surplus = pd.read_csv("outputs/focus_team_surplus_2021_2025.csv")
-player_value = pd.read_csv("outputs/player_value_skill_2021_2025.csv")
-focus_player_value = pd.read_csv("outputs/focus_player_value_skill_2021_2025.csv")
+
+# Use v2 player outputs so the dashboard includes confidence/data-quality flags.
+player_value = pd.read_csv("outputs_v2/player_value_2021_2025_v2_confidence.csv")
+focus_player_value = pd.read_csv("outputs_v2/focus_player_value_2021_2025_v2_confidence.csv")
 
 
 ## SIDEBAR ##
@@ -73,6 +75,8 @@ with st.expander("Methodology"):
         Positive values indicate that a player produced better than his cost rank.
 
         Contract cost is treated as a public-data proxy, not audited official salary-cap accounting.
+
+        **V2 confidence update:** the player-value model now includes data-quality flags for contract matching and sample size. Missing public contract data is no longer treated as true zero cost. Low-sample players are preserved in a diagnostic file but excluded from the final ranked player table.
         """
     )
 
@@ -165,6 +169,10 @@ team_players = (
 
 st.subheader(f"{team} Skill Player Value, {season}")
 
+st.caption(
+    "Player rankings use v2 confidence outputs. Low-sample players are excluded from the final ranked table, while missing public contract matches are flagged for interpretation."
+)
+
 st.dataframe(
     team_players[[
         "player_name",
@@ -175,11 +183,13 @@ st.dataframe(
         "production_rank_position",
         "cost_rank_position",
         "player_surplus_gap",
-        "player_value_tier"
+        "player_value_tier",
+        "contract_confidence",
+        "sample_confidence",
+        "overall_confidence"
     ]],
     use_container_width=True
 )
-
 
 ## LEAGUE-WIDE PLAYER BARGAINS ##
 st.header("League-Wide Skill Player Bargains")
@@ -189,6 +199,10 @@ top_players = (
     .query("season == @season")
     .sort_values("player_surplus_gap", ascending=False)
     .head(25)
+)
+
+st.caption(
+    "League-wide bargains are shown from the v2 ranked player table. Confidence fields help distinguish stronger signals from results affected by missing contract data."
 )
 
 st.dataframe(
@@ -202,7 +216,10 @@ st.dataframe(
         "production_rank_position",
         "cost_rank_position",
         "player_surplus_gap",
-        "player_value_tier"
+        "player_value_tier",
+        "contract_confidence",
+        "sample_confidence",
+        "overall_confidence"
     ]],
     use_container_width=True
 )

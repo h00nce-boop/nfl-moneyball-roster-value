@@ -59,7 +59,7 @@ Example dashboard views:
 ![Methodology and Filters Dashboard](outputs/figures/dashboard1.png)
 ![Team Level Surplus Value Dashboard](outputs/figures/dashboard2.png)
 ![Focus Team Trend + Eagles Team Detail Dashboard](outputs/figures/dashboard3.png)
-![Player-Level Skill Position Value Dashboard](outputs/figures/dashboard4.png)
+![Player-Level Skill Position Value Dashboard](outputs_v2/figures/updated_dashboard4.png)
 ![Moneyball Insight Dashboard](outputs/figures/dashboard5.png)
 
 
@@ -341,6 +341,7 @@ player_value_v2_confidence.py
 player_visuals.py
 insight_summary.py
 insight_summary_v2_confidence.py
+visuals_v2_confidence.py
 market_inefficiency.py
 app.py
 ```
@@ -428,6 +429,10 @@ Creates updated summary tables using the v2 confidence player-value outputs.
 
 This file carries confidence labels into the Eagles player summary, top league-wide bargain summary, and data-quality summary files.
 
+### `visuals_v2_confidence.py`
+
+Creates v2 confidence visuals showing sample-confidence, contract-confidence, overall-confidence, and diagnostic-vs-ranked player pool counts by season.
+
 ### `market_inefficiency.py`
 
 Summarizes player surplus value by position and cost tier to identify potential market inefficiencies.
@@ -457,7 +462,7 @@ Optional dashboard:
 ```bash
 streamlit run app.py
 ```
-Note: the current Streamlit dashboard primarily reflects the original workflow outputs. The v2 confidence outputs are saved separately and will be integrated into the dashboard in a future update.
+Note: the Streamlit dashboard now uses the v2 confidence player outputs for the player-level sections, while team-level views still use the original team surplus outputs.
 
 ### V2 Confidence Workflow
 
@@ -469,8 +474,19 @@ cost.py
 surplus_value.py
 player_value_v2_confidence.py
 insight_summary_v2_confidence.py
+visuals_v2_confidence.py
 ```
-The v2 workflow saves updated player-value files in `outputs_v2/` and updated summary files in `outputs_v2/summary/`.
+The v2 workflow saves updated player-value files in `outputs_v2/`, updated summary files in `outputs_v2/summary/`, and diagnostic visuals in `outputs_v2/figures/`.
+
+### V2 Confidence Visuals
+
+The v2 workflow also creates diagnostic visuals in `outputs_v2/figures/`.
+
+![Diagnostic Player Pool vs Final Ranked Player Pool](outputs_v2/figures/player_pool_comparison_by_season.png)
+
+![Skill-Player Sample Confidence by Season](outputs_v2/figures/player_sample_confidence_by_season.png)
+
+These charts show why the final ranked player-value table is smaller than the diagnostic player pool: many skill-position players appear in the raw data but do not meet the usage threshold for meaningful ranking.
 
 ## Limitations
 
@@ -517,5 +533,7 @@ The Billy Beane-style insight is not “avoid expensive players.” It is:
 > Find production before the market prices it as proven production.
 
 The v2 confidence update makes this conclusion more defensible by separating high-confidence player rankings from results that may be affected by missing public contract data or small samples.
+
+It is also an important step toward turning the project from a descriptive ranking model into a decision-support tool, because it separates stronger signals from results that may be distorted by missing contract data or small samples.
 
 In NFL roster-building terms, the edge comes from identifying value one contract cycle early while being honest about the limits of the available public data.
