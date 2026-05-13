@@ -301,8 +301,6 @@ player_value.loc[
 # This keeps low-sample players available for review, even though they are not
 # included in the final ranking.
 player_value_diagnostics = player_value.copy()
-player_value_diagnostics["meets_sample_threshold"].value_counts()
-
 
 ## FILTER LOW-SAMPLE PLAYERS ##
 # Only players who meet the usage threshold are included in the value ranking.

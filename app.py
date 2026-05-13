@@ -161,6 +161,10 @@ st.dataframe(
 ## PLAYER-LEVEL VIEW ##
 st.header("Player-Level Skill Position Value")
 
+st.caption(
+    "Cap number is shown in millions of dollars based on the public contract-cost proxy."
+)
+
 team_players = (
     focus_player_value
     .query("season == @season and team == @team")

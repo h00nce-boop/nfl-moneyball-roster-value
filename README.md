@@ -117,6 +117,8 @@ The main cost fields are:
 
 Because this is public contract data, the model treats cost as a proxy rather than audited official salary-cap accounting.
 
+In dashboard tables, contract cost fields such as `cap_number` are displayed in millions of dollars based on the cleaned public contract data.
+
 ### Team Surplus Value
 
 Team surplus value compares how well a team performed against how expensive its roster was.
@@ -172,6 +174,8 @@ player_surplus_gap = cost_rank_position - production_rank_position
 A positive player surplus gap means the player produced better than his cost rank.
 
 A negative player surplus gap means the player was expensive relative to his production rank.
+
+The player model is built at the player-team-season level. If a player appears for multiple teams in one season, each team stint may appear separately. This is useful for team roster analysis because it attributes production and contract cost to the team context in the public data, but it does not yet aggregate multi-team players into one full-season player valuation.
 
 ## Key Outputs
 
