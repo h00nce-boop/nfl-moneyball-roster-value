@@ -33,9 +33,10 @@ st.markdown(
 team_surplus = pd.read_csv("outputs/team_surplus_2021_2025.csv")
 focus_team_surplus = pd.read_csv("outputs/focus_team_surplus_2021_2025.csv")
 
-# Use v2 player outputs so the dashboard includes confidence/data-quality flags.
-player_value = pd.read_csv("outputs_v2/player_value_2021_2025_v2_confidence.csv")
-focus_player_value = pd.read_csv("outputs_v2/focus_player_value_2021_2025_v2_confidence.csv")
+# Use v3 player outputs so the dashboard includes confidence,
+# draft-capital, and contract-cycle context.
+player_value = pd.read_csv("outputs_v3/player_value_2021_2025_v3_contract_context.csv")
+focus_player_value = pd.read_csv("outputs_v3/focus_player_value_2021_2025_v3_contract_context.csv")
 
 
 ## SIDEBAR ##
@@ -57,6 +58,60 @@ team = st.sidebar.selectbox(
     index=0
 )
 
+position_options = ["All"] + sorted(player_value["position_final"].dropna().unique().tolist())
+
+position_filter = st.sidebar.selectbox(
+    "Position",
+    position_options,
+    index=0
+)
+
+contract_stage_options = ["All"] + sorted(
+    player_value["estimated_contract_stage"].dropna().unique().tolist()
+)
+
+contract_stage_filter = st.sidebar.selectbox(
+    "Contract Stage",
+    contract_stage_options,
+    index=0
+)
+
+draft_bucket_options = ["All"] + sorted(
+    player_value["draft_capital_bucket"].dropna().unique().tolist()
+)
+
+draft_bucket_filter = st.sidebar.selectbox(
+    "Draft Capital",
+    draft_bucket_options,
+    index=0
+)
+
+surplus_context_options = ["All"] + sorted(
+    player_value["surplus_context"].dropna().unique().tolist()
+)
+
+surplus_context_filter = st.sidebar.selectbox(
+    "Surplus Context",
+    surplus_context_options,
+    index=0
+)
+
+def apply_player_filters(df):
+    filtered = df.copy()
+
+    if position_filter != "All":
+        filtered = filtered[filtered["position_final"] == position_filter]
+
+    if contract_stage_filter != "All":
+        filtered = filtered[filtered["estimated_contract_stage"] == contract_stage_filter]
+
+    if draft_bucket_filter != "All":
+        filtered = filtered[filtered["draft_capital_bucket"] == draft_bucket_filter]
+
+    if surplus_context_filter != "All":
+        filtered = filtered[filtered["surplus_context"] == surplus_context_filter]
+
+    return filtered
 
 ## EXPLANATION ##
 with st.expander("Methodology"):
@@ -77,6 +132,8 @@ with st.expander("Methodology"):
         Contract cost is treated as a public-data proxy, not audited official salary-cap accounting.
 
         **V2 confidence update:** the player-value model now includes data-quality flags for contract matching and sample size. Missing public contract data is no longer treated as true zero cost. Low-sample players are preserved in a diagnostic file but excluded from the final ranked player table.
+        
+        **V3 contract-context update:** the player-value model now adds draft-capital and estimated contract-stage context. This helps distinguish generally cheap production from production that may be structurally underpriced because the player is still on a rookie-contract or pre-extension timeline.
         """
     )
 
@@ -168,7 +225,14 @@ st.caption(
 team_players = (
     focus_player_value
     .query("season == @season and team == @team")
-    .sort_values("player_surplus_gap", ascending=False)
+    .copy()
+)
+
+team_players = apply_player_filters(team_players)
+
+team_players = team_players.sort_values(
+    "player_surplus_gap",
+    ascending=False
 )
 
 st.subheader(f"{team} Skill Player Value, {season}")
@@ -178,20 +242,25 @@ st.caption(
 )
 
 st.dataframe(
-    team_players[[
-        "player_name",
-        "position_final",
-        "production_score",
-        "total_epa",
-        "cap_number",
-        "production_rank_position",
-        "cost_rank_position",
-        "player_surplus_gap",
-        "player_value_tier",
-        "contract_confidence",
-        "sample_confidence",
-        "overall_confidence"
-    ]],
+    team_players[
+        [
+            "player_name",
+            "position_final",
+            "production_score",
+            "total_epa",
+            "cap_number",
+            "player_surplus_gap",
+            "player_value_tier",
+            "draft_year",
+            "draft_round",
+            "draft_pick",
+            "draft_capital_bucket",
+            "years_since_drafted",
+            "estimated_contract_stage",
+            "surplus_context",
+            "overall_confidence"
+        ]
+    ],
     use_container_width=True
 )
 
@@ -201,6 +270,13 @@ st.header("League-Wide Skill Player Bargains")
 top_players = (
     player_value
     .query("season == @season")
+    .copy()
+)
+
+top_players = apply_player_filters(top_players)
+
+top_players = (
+    top_players
     .sort_values("player_surplus_gap", ascending=False)
     .head(25)
 )
@@ -210,24 +286,77 @@ st.caption(
 )
 
 st.dataframe(
-    top_players[[
-        "player_name",
-        "team",
-        "position_final",
-        "production_score",
-        "total_epa",
-        "cap_number",
-        "production_rank_position",
-        "cost_rank_position",
-        "player_surplus_gap",
-        "player_value_tier",
-        "contract_confidence",
-        "sample_confidence",
-        "overall_confidence"
-    ]],
+    top_players[
+        [
+            "player_name",
+            "team",
+            "position_final",
+            "production_score",
+            "total_epa",
+            "cap_number",
+            "player_surplus_gap",
+            "player_value_tier",
+            "draft_year",
+            "draft_round",
+            "draft_pick",
+            "draft_capital_bucket",
+            "years_since_drafted",
+            "estimated_contract_stage",
+            "surplus_context",
+            "overall_confidence"
+        ]
+    ],
     use_container_width=True
 )
 
+## PRE-EXTENSION CANDIDATES ##
+st.header("Pre-Extension Breakout Candidates")
+
+pre_extension = (
+    player_value
+    .query("season == @season")
+    .copy()
+)
+
+pre_extension = apply_player_filters(pre_extension)
+
+pre_extension = pre_extension[
+    pre_extension["surplus_context"].isin(
+        ["pre_extension_breakout", "rookie_contract_surplus"]
+    )
+]
+
+pre_extension = pre_extension.sort_values(
+    "player_surplus_gap",
+    ascending=False
+).head(25)
+
+st.caption(
+    "This table highlights players with positive surplus value who are still "
+    "estimated to be on rookie-contract or fifth-year-option timelines."
+)
+
+st.dataframe(
+    pre_extension[
+        [
+            "player_name",
+            "team",
+            "position_final",
+            "player_surplus_gap",
+            "production_score",
+            "cap_number",
+            "draft_year",
+            "draft_round",
+            "draft_pick",
+            "draft_capital_bucket",
+            "years_since_drafted",
+            "estimated_contract_stage",
+            "surplus_context",
+            "overall_confidence"
+        ]
+    ],
+    use_container_width=True
+)
 
 ## MONEYBALL INSIGHT ##
 st.header("Moneyball Insight")

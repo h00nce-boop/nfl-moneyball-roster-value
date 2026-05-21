@@ -492,6 +492,33 @@ The v2 workflow also creates diagnostic visuals in `outputs_v2/figures/`.
 
 These charts show why the final ranked player-value table is smaller than the diagnostic player pool: many skill-position players appear in the raw data but do not meet the usage threshold for meaningful ranking.
 
+## V3 Contract Context Workflow
+
+The v3 workflow builds on the v2 confidence output by adding draft-capital and estimated contract-cycle context to the player-value model.
+
+The purpose of this step is to distinguish cheap production from structurally underpriced production. A player may look valuable because he is inexpensive, but v3 asks whether that value is connected to where the player is in the contract cycle.
+
+New fields include:
+
+- draft_year
+- draft_round
+- draft_pick
+- draft_capital_bucket
+- years_since_drafted
+- estimated_contract_stage
+- is_likely_rookie_contract
+- surplus_context
+
+The main v3 output is:
+
+`outputs_v3/player_value_2021_2025_v3_contract_context.csv`
+
+The main decision-support table is:
+
+`outputs_v3/summary/pre_extension_candidates_2025.csv`
+
+This moves the project closer to identifying players whose production may be appearing before the market has fully priced it.
+
 ## Limitations
 
 This model is a public-data approximation and should be interpreted as a decision-support tool, not a perfect front-office valuation system.
