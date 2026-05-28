@@ -1,0 +1,77 @@
+season,player_name,team,position_final,production_score,player_surplus_gap,player_surplus_rank,cap_number,draft_year,draft_round,draft_pick,years_since_drafted,draft_capital_bucket,estimated_contract_stage,is_likely_rookie_contract,overall_confidence,review_group,watchlist_note
+2025,Puka Nacua,LA,WR,281.28146136267435,74.0,1.0,1.091245,2023.0,5.0,177.0,2.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Parker Washington,JAX,WR,100.1458392066828,49.0,2.0,1.078066,2023.0,6.0,185.0,2.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Michael Wilson,ARI,WR,116.55218070236764,46.0,3.0,1.456217,2023.0,3.0,94.0,2.0,round_3,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Kayshon Boutte,NE,WR,90.66034117618686,46.0,3.0,1.076816,2023.0,6.0,187.0,2.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Ryan Flournoy,DAL,WR,76.1076776391556,40.0,5.0,0.906667,2024.0,6.0,216.0,1.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,George Pickens,DAL,WR,210.4427112801041,39.0,6.0,3.656,2022.0,2.0,52.0,3.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Jaxon Smith-Njigba,SEA,WR,241.9190039093038,37.0,7.0,3.931993,2023.0,1.0,20.0,2.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Chase Brown,CIN,RB,108.4795558652642,36.0,1.0,1.101539,2023.0,5.0,163.0,2.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Zay Flowers,BAL,WR,152.0338582026944,34.0,8.0,3.82812,2023.0,1.0,22.0,2.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,De'Von Achane,MIA,RB,148.46097509414986,33.0,2.0,1.482941,2023.0,3.0,84.0,2.0,round_3,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Tre Tucker,LV,WR,87.9493380499473,32.0,9.0,1.446568,2023.0,3.0,100.0,2.0,round_3,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Jacory Croskey-Merritt,WAS,RB,64.4034335730453,32.0,3.0,0.866357,2025.0,7.0,245.0,0.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,DeMario Douglas,NE,WR,67.3250093571227,30.0,11.0,1.063333,2023.0,6.0,210.0,2.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Kyle Monangai,CHI,RB,63.25449328940423,30.0,4.0,0.872035,2025.0,7.0,233.0,0.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Wan'Dale Robinson,NYG,WR,107.3345909378728,29.0,12.0,2.604371,2022.0,2.0,43.0,3.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Troy Franklin,DEN,WR,78.36723052168705,28.0,13.0,1.188709,2024.0,4.0,102.0,1.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Tyquan Thornton,KC,WR,61.89813281281208,28.0,13.0,1.040556,2022.0,2.0,50.0,3.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,AJ Barner,SEA,TE,95.82583467247532,26.0,1.0,1.148777,2024.0,4.0,121.0,1.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Alec Pierce,IND,WR,135.67911305843583,25.0,15.0,4.151244,2022.0,2.0,53.0,3.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Rashee Rice,KC,WR,78.68194884641753,25.0,15.0,1.324598,2023.0,2.0,55.0,2.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Tez Johnson,TB,WR,54.28911757502706,25.0,15.0,0.870985,2025.0,7.0,235.0,0.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Drake Maye,NE,QB,288.08507712224093,24.0,1.0,8.327219,2024.0,1.0,3.0,1.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Tyrone Tracy Jr.,NYG,RB,62.65427693713083,24.0,5.0,1.031588,2024.0,5.0,166.0,1.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Luther Burden III,CHI,WR,84.55814341538935,23.0,18.0,1.993461,2025.0,2.0,39.0,0.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Bo Nix,DEN,QB,165.88789432636088,22.0,2.0,4.230265,2024.0,1.0,12.0,1.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,RJ Harvey,DEN,RB,88.27971956746576,22.0,6.0,1.338122,2025.0,2.0,60.0,0.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Chris Olave,NO,WR,138.78112816185646,21.0,19.0,6.131959,2022.0,1.0,11.0,3.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Oronde Gadsden II,LAC,TE,70.96505532409869,20.0,2.0,0.933509,2025.0,5.0,165.0,0.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Cam Skattebo,NYG,RB,49.101339092737064,20.0,7.0,0.913816,2025.0,4.0,105.0,0.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Kyren Williams,LA,RB,138.11627437536984,18.0,9.0,2.465102,2022.0,5.0,164.0,3.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Jaxson Dart,NYG,QB,126.86347932671816,18.0,3.0,3.086898,2025.0,1.0,25.0,0.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Romeo Doubs,GB,WR,102.59547256009007,18.0,20.0,3.576979,2022.0,4.0,132.0,3.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Tucker Kraft,GB,TE,89.04276139789144,18.0,3.0,1.510345,2023.0,3.0,78.0,2.0,round_3,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Xavier Hutchinson,HOU,WR,54.934920907799494,18.0,20.0,1.070925,2023.0,6.0,205.0,2.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Kimani Vidal,LAC,RB,41.599666600415354,18.0,9.0,0.693333,2024.0,6.0,181.0,1.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Jameson Williams,DET,WR,148.44272256089278,17.0,22.0,7.42181,2022.0,1.0,12.0,3.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Colston Loveland,CHI,TE,114.68358338262718,17.0,4.0,4.84291,2025.0,1.0,10.0,0.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,TreVeyon Henderson,NE,RB,106.4633030216752,17.0,11.0,2.026047,2025.0,2.0,38.0,0.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Ladd McConkey,LAC,WR,81.18522750449289,17.0,22.0,2.271633,2024.0,2.0,34.0,1.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Chris Rodriguez Jr.,WAS,RB,48.14746537129395,17.0,11.0,1.03,2023.0,6.0,193.0,2.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Tetairoa McMillan,CAR,WR,114.48509608821286,16.0,24.0,5.078253,2025.0,1.0,8.0,0.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Harold Fannin Jr.,CLE,TE,75.82929365714418,16.0,5.0,1.225979,2025.0,3.0,67.0,0.0,round_3,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,James Cook,BUF,RB,160.09799770077868,15.0,13.0,3.435375,2022.0,2.0,63.0,3.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Andrei Iosivas,CIN,WR,48.228240934587234,15.0,25.0,1.069848,2023.0,6.0,206.0,2.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Brenton Strange,JAX,TE,78.8647508115372,14.0,6.0,1.667548,2023.0,2.0,61.0,2.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Blake Corum,LA,RB,69.16041979973089,14.0,16.0,1.309946,2024.0,3.0,83.0,1.0,round_3,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Jahmyr Gibbs,DET,RB,180.2834518911758,13.0,17.0,4.866856,2023.0,1.0,12.0,2.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,DeVonta Smith,PHI,WR,136.01954212163125,13.0,26.0,7.52451,2021.0,1.0,10.0,4.0,round_1,possible_fifth_year_option,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Christian Watson,GB,WR,89.5377431172806,13.0,26.0,3.336665,2022.0,2.0,34.0,3.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Emeka Egbuka,TB,WR,86.5614994226421,13.0,26.0,3.304133,2025.0,1.0,19.0,0.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Zach Charbonnet,SEA,RB,84.2173228998953,13.0,17.0,1.875294,2023.0,2.0,52.0,2.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Trey McBride,ARI,TE,199.16636689027308,12.0,7.0,9.594393,2022.0,2.0,55.0,3.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Caleb Williams,CHI,QB,159.06323686768334,12.0,4.0,8.974104,2024.0,1.0,1.0,1.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Quentin Johnston,LAC,WR,97.3900605425204,12.0,29.0,3.869669,2023.0,1.0,21.0,2.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Dalton Kincaid,BUF,TE,92.68840316268242,12.0,7.0,3.66192,2023.0,1.0,25.0,2.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Sam LaPorta,DET,TE,79.8778423127509,12.0,7.0,2.581636,2023.0,2.0,34.0,2.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Mac Jones,SF,QB,73.92734438676331,12.0,4.0,2.558,2021.0,1.0,15.0,4.0,round_1,possible_fifth_year_option,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Theo Johnson,NYG,TE,61.48237116280326,12.0,7.0,1.167859,2024.0,4.0,107.0,1.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Bijan Robinson,ATL,RB,181.98520651349455,11.0,20.0,5.988694,2023.0,1.0,8.0,2.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Brock Bowers,LV,TE,93.29312266775398,10.0,11.0,4.122451,2024.0,1.0,13.0,1.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Jake Ferguson,DAL,TE,92.9158242648256,10.0,11.0,3.98222,2022.0,4.0,129.0,3.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Tyler Warren,IND,TE,86.21768706134586,9.0,15.0,3.811027,2025.0,1.0,14.0,0.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Jayden Higgins,HOU,WR,71.25768278479529,9.0,30.0,2.127422,2025.0,2.0,34.0,0.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Jalen Nailor,MIN,WR,52.39058400597847,9.0,30.0,1.145165,2022.0,6.0,191.0,3.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Woody Marks,HOU,RB,44.60120295525152,9.0,21.0,1.090942,2025.0,4.0,116.0,0.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Brock Purdy,SF,QB,134.59202882330524,8.0,7.0,9.119253,2022.0,7.0,262.0,3.0,rounds_6_7,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Josh Downs,IND,WR,61.83588007382251,8.0,32.0,1.505577,2023.0,3.0,79.0,2.0,round_3,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Tyler Shough,NO,QB,45.47311623842555,8.0,7.0,1.964496,2025.0,2.0,40.0,0.0,round_2,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Elic Ayomanor,TEN,WR,38.404296503543975,8.0,32.0,1.006454,2025.0,4.0,136.0,0.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Trevor Lawrence,JAX,QB,172.97147994854305,7.0,9.0,17.0,2021.0,1.0,1.0,4.0,round_1,possible_fifth_year_option,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Drake London,ATL,WR,108.730595332661,7.0,36.0,6.851878,2022.0,1.0,8.0,3.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Khalil Shakir,BUF,WR,73.59672388869093,7.0,36.0,2.586788,2022.0,5.0,148.0,3.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Tyler Allgeier,ATL,RB,49.22810069334861,7.0,23.0,1.183472,2022.0,5.0,151.0,3.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Dontayvion Wicks,GB,WR,45.052123921150574,6.0,39.0,1.105636,2023.0,5.0,159.0,2.0,rounds_4_5,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,C.J. Stroud,HOU,QB,122.81344646764003,5.0,12.0,9.894339,2023.0,1.0,2.0,2.0,round_1,rookie_contract,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.
+2025,Jaylen Waddle,MIA,WR,116.76881092795584,5.0,41.0,8.020709,2021.0,1.0,6.0,4.0,round_1,possible_fifth_year_option,True,high,2025_watchlist,Matches historical candidate profile; no next-year outcome yet.

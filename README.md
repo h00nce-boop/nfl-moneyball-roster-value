@@ -18,7 +18,18 @@ The project evaluates all 32 NFL teams from 2021–2025, then focuses more close
 
 ## Project Status
 
-This is an ongoing portfolio project. The current version builds a team-level surplus value model, a skill-player value model, and an interactive Streamlit dashboard. Future iterations will expand the model to include defensive players, offensive linemen, injury adjustments, rookie-contract status, and draft capital analysis.
+This is an ongoing portfolio project. The current version includes:
+
+- a team-level surplus value model
+- a player-level offensive skill-position value model
+- V2 confidence and data-quality flags
+- V3 draft-capital and contract-cycle context
+- V4 backtesting and latest-season candidate review
+- an interactive Streamlit dashboard
+
+The newest V4 layer moves the project from descriptive rankings toward decision support by testing whether model-flagged rookie-contract surplus candidates outperform similar rookie-contract players the model did not flag.
+
+Future iterations will expand the model to include defensive players, offensive linemen, injury adjustments, opportunity-adjusted production, age curves, and draft-prospect analysis.
 
 ## Core Question
 
@@ -75,7 +86,7 @@ This project uses public NFL data through `nflreadpy`, including:
 - draft data
 - snap count data for future expansion
 
-The project uses data from the 2021, 2022, 2023, 2024, and 2025 seasons.
+The project uses data from the 2021, 2022, 2023, 2024, and 2025 NFL seasons.
 
 ## Why 2021–2025?
 
@@ -83,7 +94,20 @@ The model uses a five-season window to balance sample size and relevance.
 
 A one-season sample can be too noisy because injuries, schedule strength, and small-sample performance can distort results. A much longer window can become less relevant because NFL rosters turn over quickly, coaching staffs change, and rookie contracts expire.
 
-A 2021–2025 window gives enough data to observe roster-building trends while staying close to the current NFL environment.
+A 2021–2025 NFL-season window gives enough data to observe roster-building trends while staying close to the current NFL environment.
+
+### Season labeling note
+
+This project uses NFL season-year labels, not calendar-year labels. A season is labeled by the year in which the NFL season begins. For example, the 2025 season refers to the 2025 NFL season, even though that season concludes in early 2026.
+
+The model covers the 2021–2025 NFL seasons. V4 backtesting uses 2021–2024 as candidate seasons because each candidate season requires a following-season outcome:
+
+- 2021 candidates are evaluated using 2022 outcomes
+- 2022 candidates are evaluated using 2023 outcomes
+- 2023 candidates are evaluated using 2024 outcomes
+- 2024 candidates are evaluated using 2025 outcomes
+
+The 2025 season is treated as the latest-season watchlist because 2026 outcomes are not available yet.
 
 ## Methodology
 
@@ -175,7 +199,9 @@ A positive player surplus gap means the player produced better than his cost ran
 
 A negative player surplus gap means the player was expensive relative to his production rank.
 
-The player model is built at the player-team-season level. If a player appears for multiple teams in one season, each team stint may appear separately. This is useful for team roster analysis because it attributes production and contract cost to the team context in the public data, but it does not yet aggregate multi-team players into one full-season player valuation.
+The base player model is built at the player-team-season level. If a player appears for multiple teams in one season, each team stint may appear separately in the descriptive player-value outputs. This is useful for team roster analysis because it attributes production and contract cost to the team context in the public data.
+
+For V4 backtesting, the model creates a cleaned player-season-position table. This collapses any duplicate player-season-position rows before recomputing production rank, cost rank, and surplus gap. The backtest therefore evaluates whether a player’s full-season surplus signal carried forward into the following season.
 
 ## Key Outputs
 
@@ -219,6 +245,41 @@ Summary outputs are saved in `outputs_v2/summary/`, including:
 - `player_data_quality_summary_2021_2025.csv`
 - `player_data_quality_diagnostics_2021_2025.csv`
 
+### Updated V3 Outputs
+
+The V3 contract-context workflow saves player-value files in `outputs_v3/`:
+
+- `player_value_2021_2025_v3_contract_context.csv`
+- `focus_player_value_2021_2025_v3_contract_context.csv`
+
+Summary outputs are saved in `outputs_v3/summary/`, including:
+
+- `pre_extension_candidates_2025.csv`
+
+The 2025 pre-extension candidate table is a latest-season watchlist, not a backtested result, because 2026 outcomes are not available yet.
+
+### V4 Backtest and Candidate Review Outputs
+
+The V4 workflow saves backtest and decision-support files in `outputs_v4/` and `outputs_v4/backtests/`.
+
+Main V4 outputs include:
+
+- `player_value_2021_2025_player_season_clean.csv`
+- `backtest_lift_model_vs_not_flagged_clean.csv`
+- `backtest_summary_clean.csv`
+- `threshold_sensitivity_lift.csv`
+- `threshold_sensitivity_summary.csv`
+- `threshold_sensitivity_candidate_counts.csv`
+- `season_stability_lift_by_season.csv`
+- `season_stability_lift_by_season_position.csv`
+- `candidate_review_summary.csv`
+- `candidate_review_top_true_positives.csv`
+- `candidate_review_model_misses.csv`
+- `candidate_review_missed_opportunities.csv`
+- `candidate_review_2025_watchlist.csv`
+
+The V4 backtest compares model-flagged rookie-contract surplus candidates against high-confidence rookie-contract players the model did not flag.
+
 ## Visualizations
 
 The project creates several charts, including:
@@ -229,11 +290,18 @@ The project creates several charts, including:
 - Eagles skill player surplus value
 - Eagles skill player cost vs production
 - top skill player bargains across the league
+- V2 confidence and diagnostic visuals
+- V4 backtest validation visuals
 
-These visuals are saved in:
+Team and player visuals are saved in:
 
 ```text
 outputs/figures/
+outputs_v2/figures/
+```
+V4 validation visuals are saved in:
+```text
+outputs_v4/figures/
 ```
 
 ## Early Findings
@@ -285,6 +353,24 @@ This does not mean expensive wide receivers are bad players. It means the cost h
 The broader Moneyball takeaway is:
 
 > The market pays heavily for proven production. The edge comes from identifying production before it becomes expensive.
+
+### 7. V4 backtesting suggests the surplus signal has next-season value
+
+The V4 backtest tests whether high-confidence rookie-contract surplus candidates outperform similar rookie-contract players the model did not flag.
+
+At the default surplus threshold of `player_surplus_gap >= 5`, model candidates outperformed not-flagged rookie-contract players across the full 2021–2024 candidate window.
+
+Across all offensive skill positions:
+
+- model candidates had a 57.9% next-season hit rate
+- not-flagged rookie-contract players had a 47.6% next-season hit rate
+- hit-rate lift was +10.3 percentage points
+- next-season surplus-gap lift was +10.38
+
+Threshold sensitivity showed that the model signal stayed positive across all tested surplus thresholds from 0 to 20. The signal was strongest and most stable among wide receivers, while RB/TE/QB results were more sample-sensitive.
+
+This does not mean the model is a finished front-office tool. It means the surplus signal is worth further development because it showed positive lift against a reasonable baseline.
+
 
 ## Eagles Case Study: Surplus Value Across the Contract Cycle
 
@@ -348,6 +434,13 @@ insight_summary_v2_confidence.py
 visuals_v2_confidence.py
 market_inefficiency.py
 app.py
+player_value_v3_contract_context.py
+player_value_v4_backtest.py
+player_value_v4_backtest_clean.py
+player_value_v4_threshold_sensitivity.py
+player_value_v4_season_stability.py
+player_value_v4_candidate_review.py
+visuals_v4_backtest.py
 ```
 
 ## File Descriptions
@@ -418,6 +511,34 @@ The first version focuses on:
 Builds the updated player-level skill-position surplus value model with confidence and data-quality flags.
 
 This version preserves missing contract values as missing, flags contract match quality, identifies low-sample players, saves a diagnostic file before filtering, and creates final ranked player-value outputs for qualifying QB/RB/WR/TE players.
+
+### `player_value_v3_contract_context.py`
+
+Builds on the V2 confidence player-value output by adding draft-capital and estimated contract-cycle context.
+
+This file adds fields such as draft year, draft round, draft pick, draft-capital bucket, years since drafted, estimated contract stage, likely rookie-contract status, and surplus context.
+
+### `player_value_v4_backtest_clean.py`
+
+Creates the preferred V4 backtest comparing model-flagged rookie-contract surplus candidates against similar rookie-contract players the model did not flag.
+
+This file also creates the cleaned player-season-position table used by later V4 scripts.
+
+### `player_value_v4_threshold_sensitivity.py`
+
+Tests whether the surplus signal depends too heavily on one threshold by evaluating multiple `player_surplus_gap` cutoffs.
+
+### `player_value_v4_season_stability.py`
+
+Tests whether the V4 backtest signal is stable across candidate seasons.
+
+### `player_value_v4_candidate_review.py`
+
+Creates human-readable review tables, including true positives, model misses, missed opportunities, and the 2025 latest-season watchlist.
+
+### `visuals_v4_backtest.py`
+
+Creates V4 static validation visuals, including threshold sensitivity and season stability charts.
 
 ### `player_visuals.py`
 
@@ -519,6 +640,61 @@ The main decision-support table is:
 
 This moves the project closer to identifying players whose production may be appearing before the market has fully priced it.
 
+## V4 Backtesting and Candidate Review Workflow
+
+The V4 workflow tests whether the player surplus signal has next-season value.
+
+The main backtest compares:
+
+- model candidates: high-confidence rookie-contract players with positive surplus signals
+- not-flagged baseline: high-confidence rookie-contract players the model did not flag
+
+The V4 workflow uses:
+
+- descriptive seasons: 2021–2025 NFL seasons
+- candidate seasons: 2021–2024
+- outcome seasons: 2022–2025
+- latest watchlist season: 2025
+
+The default candidate threshold is:
+
+```text
+player_surplus_gap >= 5
+```
+
+The first-pass hit definition is:
+
+```text
+appeared in the next season
+AND
+(remained positive-surplus OR improved production score)
+```
+
+The V4 workflow includes:
+
+```text
+player_value_v4_backtest_clean.py
+player_value_v4_threshold_sensitivity.py
+player_value_v4_season_stability.py
+player_value_v4_candidate_review.py
+visuals_v4_backtest.py
+```
+
+V4 outputs are saved in:
+
+```text
+outputs_v4/
+outputs_v4/backtests/
+outputs_v4/figures/
+```
+### V4 Backtest Visuals
+
+![V4 Threshold Sensitivity: Overall Hit-Rate Lift](outputs_v4/figures/v4_threshold_sensitivity_overall_hit_rate_lift.png)
+
+![V4 Threshold Sensitivity: Hit-Rate Lift by Position](outputs_v4/figures/v4_threshold_sensitivity_hit_rate_lift_by_position.png)
+
+![V4 Season Stability: Hit-Rate Lift](outputs_v4/figures/v4_season_stability_hit_rate_lift.png)
+
 ## Limitations
 
 This model is a public-data approximation and should be interpreted as a decision-support tool, not a perfect front-office valuation system.
@@ -540,8 +716,8 @@ Future versions of this project could add:
 
 - defensive player surplus value
 - offensive line value proxies
-- rookie-contract status
-- draft capital analysis
+- more precise rookie-contract and extension-status modeling
+- more robust draft-value and draft-capital modeling
 - injury-adjusted value
 - age curves by position
 - free-agent target recommendations
