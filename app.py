@@ -44,13 +44,26 @@ player_value = pd.read_csv("outputs_v3/player_value_2021_2025_v3_contract_contex
 focus_player_value = pd.read_csv("outputs_v3/focus_player_value_2021_2025_v3_contract_context.csv")
 
 ## OPTIONAL V4 DATA ##
-v4_threshold_path = Path("outputs_v4/backtests/threshold_sensitivity_lift.csv")
-v4_season_path = Path("outputs_v4/backtests/season_stability_lift_by_season.csv")
-v4_watchlist_path = Path("outputs_v4/backtests/candidate_review_2025_watchlist.csv")
+def load_optional_csv(path):
+    path = Path(path)
+    return pd.read_csv(path) if path.exists() else None
 
-v4_threshold = pd.read_csv(v4_threshold_path) if v4_threshold_path.exists() else None
-v4_season = pd.read_csv(v4_season_path) if v4_season_path.exists() else None
-v4_watchlist = pd.read_csv(v4_watchlist_path) if v4_watchlist_path.exists() else None
+
+v4_lift = load_optional_csv(
+    "outputs_v4/backtests/backtest_lift_model_vs_not_flagged_clean.csv"
+)
+
+v4_threshold = load_optional_csv(
+    "outputs_v4/backtests/threshold_sensitivity_lift.csv"
+)
+
+v4_season = load_optional_csv(
+    "outputs_v4/backtests/season_stability_lift_by_season.csv"
+)
+
+v4_watchlist = load_optional_csv(
+    "outputs_v4/backtests/candidate_review_2025_watchlist.csv"
+)
 
 ## SIDEBAR ##
 st.sidebar.header("Filters")
@@ -383,17 +396,23 @@ st.header("V4 Backtest & Decision Support")
 
 st.markdown(
     """
-    V4 tests whether model-flagged rookie-contract surplus candidates performed better the following season than similar rookie-contract players the model did not flag.
+    V4 tests whether model-flagged rookie-contract surplus candidates performed
+    better the following season than similar rookie-contract players the model did not flag.
+
+    This should be interpreted as **first-pass validation**, not as a finished
+    prediction model.
     """
 )
 
-if v4_threshold is None or v4_season is None or v4_watchlist is None:
+if v4_lift is None or v4_threshold is None or v4_season is None or v4_watchlist is None:
     st.info(
-        "V4 outputs were not found. Run the V4 backtest, threshold sensitivity, season stability, and candidate review scripts to populate this section."
+        "V4 outputs were not found. Run the V4 backtest, threshold sensitivity, "
+        "season stability, and candidate review scripts to populate this section."
     )
 else:
-    tab1, tab2, tab3 = st.tabs(
+    tab1, tab2, tab3, tab4 = st.tabs(
         [
+            "Default Backtest",
             "Threshold Sensitivity",
             "Season Stability",
             "2025 Watchlist",
@@ -401,10 +420,77 @@ else:
     )
 
     with tab1:
+        st.subheader("Default V4 Backtest")
+
+        st.caption(
+            "Default threshold: player_surplus_gap >= 5. "
+            "Comparison: model-flagged rookie-contract candidates versus "
+            "not-flagged high-confidence rookie-contract players."
+        )
+
+        overall_lift = v4_lift[
+            v4_lift["position_final"] == "ALL"
+        ].copy()
+
+        if not overall_lift.empty:
+            overall = overall_lift.iloc[0]
+
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+                st.metric(
+                    "Hit-rate lift",
+                    f"{overall['hit_rate_lift']:.1%}",
+                )
+
+            with col2:
+                st.metric(
+                    "Appearance-rate lift",
+                    f"{overall['appearance_rate_lift']:.1%}",
+                )
+
+            with col3:
+                st.metric(
+                    "Next-surplus-gap lift",
+                    f"{overall['next_surplus_gap_lift']:.2f}",
+                )
+
+        default_display_columns = [
+            "position_final",
+            "players_model",
+            "players_baseline",
+            "hit_rate_model",
+            "hit_rate_baseline",
+            "hit_rate_lift",
+            "appearance_rate_lift",
+            "next_surplus_gap_lift",
+            "next_production_score_lift",
+        ]
+
+        default_display_columns = [
+            col for col in default_display_columns
+            if col in v4_lift.columns
+        ]
+
+        st.dataframe(
+            v4_lift[default_display_columns].sort_values(
+                "hit_rate_lift",
+                ascending=False,
+            ),
+            use_container_width=True,
+        )
+
+        st.caption(
+            "Hit = appeared the following season and either remained positive-surplus "
+            "or improved production score. This is a broad first-pass validation metric."
+        )
+
+    with tab2:
         st.subheader("Threshold Sensitivity")
 
         st.caption(
-            "This view tests whether the model signal stays positive across different surplus-gap thresholds."
+            "This view tests whether the model signal stays positive across "
+            "different surplus-gap thresholds."
         )
 
         metric_label = st.selectbox(
@@ -415,7 +501,7 @@ else:
                 "Next-surplus-gap lift",
                 "Next-production-score lift",
             ],
-            index=0
+            index=0,
         )
 
         metric_map = {
@@ -441,34 +527,42 @@ else:
             .copy()
         )
 
+        threshold_display_columns = [
+            "threshold",
+            "players_model",
+            "players_baseline",
+            "hit_rate_model",
+            "hit_rate_baseline",
+            "hit_rate_lift",
+            "appearance_rate_lift",
+            "next_surplus_gap_lift",
+            "next_production_score_lift",
+        ]
+
+        threshold_display_columns = [
+            col for col in threshold_display_columns
+            if col in threshold_overall.columns
+        ]
+
         st.markdown("**Overall threshold results**")
+
         st.dataframe(
-            threshold_overall[
-                [
-                    "threshold",
-                    "players_model",
-                    "players_baseline",
-                    "hit_rate_model",
-                    "hit_rate_baseline",
-                    "hit_rate_lift",
-                    "appearance_rate_lift",
-                    "next_surplus_gap_lift",
-                ]
-            ],
-            use_container_width=True
+            threshold_overall[threshold_display_columns],
+            use_container_width=True,
         )
 
-        st.markdown(f"**{metric_label} by threshold and position**")
+        if metric_col in threshold_position.columns:
+            st.markdown(f"**{metric_label} by threshold and position**")
 
-        threshold_chart = threshold_position.pivot(
-            index="threshold",
-            columns="position_final",
-            values=metric_col
-        )
+            threshold_chart = threshold_position.pivot(
+                index="threshold",
+                columns="position_final",
+                values=metric_col,
+            )
 
-        st.line_chart(threshold_chart)
+            st.line_chart(threshold_chart)
 
-    with tab2:
+    with tab3:
         st.subheader("Season Stability")
 
         st.caption(
@@ -483,38 +577,49 @@ else:
                 "Next-surplus-gap lift",
                 "Next-production-score lift",
             ],
-            index=0
+            index=0,
         )
 
         season_metric_col = metric_map[season_metric_label]
 
         season_results = v4_season.sort_values("season").copy()
 
+        season_display_columns = [
+            "season",
+            "players_model",
+            "players_baseline",
+            "hit_rate_model",
+            "hit_rate_baseline",
+            "hit_rate_lift",
+            "appearance_rate_lift",
+            "next_surplus_gap_lift",
+            "next_production_score_lift",
+        ]
+
+        season_display_columns = [
+            col for col in season_display_columns
+            if col in season_results.columns
+        ]
+
         st.dataframe(
-            season_results[
-                [
-                    "season",
-                    "players_model",
-                    "players_baseline",
-                    "hit_rate_model",
-                    "hit_rate_baseline",
-                    "hit_rate_lift",
-                    "appearance_rate_lift",
-                    "next_surplus_gap_lift",
-                ]
-            ],
-            use_container_width=True
+            season_results[season_display_columns],
+            use_container_width=True,
         )
 
-        season_chart = season_results.set_index("season")[[season_metric_col]]
+        if season_metric_col in season_results.columns:
+            season_chart = season_results.set_index("season")[
+                [season_metric_col]
+            ]
 
-        st.line_chart(season_chart)
+            st.line_chart(season_chart)
 
-    with tab3:
+    with tab4:
         st.subheader("2025 Latest-Season Watchlist")
 
         st.caption(
-            "The 2025 watchlist identifies players who match the historically tested surplus profile. These are not backtested hits yet because 2026 outcomes are not available."
+            "The 2025 watchlist identifies players who match the historically "
+            "tested surplus profile. These are not predictions and not backtested "
+            "hits yet because 2026 outcomes are not available."
         )
 
         watchlist = v4_watchlist.copy()
@@ -526,7 +631,7 @@ else:
         watchlist_position = st.selectbox(
             "Watchlist position",
             watchlist_position_options,
-            index=0
+            index=0,
         )
 
         if watchlist_position != "All":
@@ -539,7 +644,7 @@ else:
             min_value=0,
             max_value=int(max(0, watchlist["player_surplus_gap"].max())),
             value=5,
-            step=1
+            step=1,
         )
 
         watchlist = watchlist[
@@ -548,7 +653,7 @@ else:
 
         watchlist = watchlist.sort_values(
             ["player_surplus_gap", "production_score"],
-            ascending=[False, False]
+            ascending=[False, False],
         )
 
         display_columns = [
@@ -568,14 +673,14 @@ else:
         ]
 
         display_columns = [
-            col for col in display_columns if col in watchlist.columns
+            col for col in display_columns
+            if col in watchlist.columns
         ]
 
         st.dataframe(
             watchlist[display_columns],
-            use_container_width=True
+            use_container_width=True,
         )
-
 
 ## MONEYBALL INSIGHT ##
 st.header("Moneyball Insight")

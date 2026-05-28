@@ -71,15 +71,34 @@ if missing_columns:
 
 ## ANALYSIS UNIVERSE ##
 
-# Use high-confidence rows for the main market-inefficiency analysis.
-# This keeps the conclusions aligned with the V2/V3 defensibility updates.
-market_universe = player_value[
-    (player_value["overall_confidence"] == "high") &
-    (player_value["cap_number"].notna())
-].copy()
+# Public-facing market-inefficiency conclusions should only use rows
+# with high confidence and a valid public contract-cost proxy.
+# Missing, unmatched, or zero-cost rows are saved for auditability,
+# but they are not treated as "cheap" players.
+valid_market_mask = (
+    (player_value["overall_confidence"] == "high")
+    & (player_value["has_contract_match"] == True)
+    & (player_value["has_missing_contract"] == False)
+    & (player_value["cap_number"].notna())
+    & (player_value["cap_number"] > 0)
+)
+
+market_universe = player_value.loc[valid_market_mask].copy()
+excluded_market_rows = player_value.loc[~valid_market_mask].copy()
+
+excluded_market_rows.to_csv(
+    f"{OUTPUT_DIR}/market_inefficiency_excluded_rows_v3.csv",
+    index=False,
+)
 
 print("Market analysis universe:", market_universe.shape)
+print("Excluded from market analysis:", excluded_market_rows.shape)
 print(market_universe["position_final"].value_counts())
+
+if market_universe.empty:
+    raise ValueError(
+        "Market analysis universe is empty after applying confidence and valid-cost filters."
+    )
 
 
 ## COST TIER FUNCTION ##
@@ -88,17 +107,20 @@ def assign_cost_tier(cap_number):
     """
     Cost tiers use cap_number as a public contract-cost proxy.
     Cap values are treated as millions of dollars.
+
+    Missing, unmatched, or zero-cost rows are intentionally excluded
+    before this function is called. They are saved in the excluded-row
+    audit file instead of being treated as a public-facing cost tier.
     """
     if pd.isna(cap_number) or cap_number <= 0:
-        return "No/missing cost"
-    elif cap_number >= 20:
+        return pd.NA
+    if cap_number >= 20:
         return "Premium cost"
-    elif cap_number >= 10:
+    if cap_number >= 10:
         return "High cost"
-    elif cap_number >= 4:
+    if cap_number >= 4:
         return "Mid cost"
-    else:
-        return "Low cost"
+    return "Low cost"
 
 
 def assign_surplus_bucket(gap):
@@ -122,6 +144,8 @@ def assign_surplus_bucket(gap):
 market_universe["cost_tier"] = market_universe["cap_number"].apply(
     assign_cost_tier
 )
+
+market_universe = market_universe.dropna(subset=["cost_tier"]).copy()
 
 market_universe["surplus_bucket"] = market_universe["player_surplus_gap"].apply(
     assign_surplus_bucket
@@ -163,6 +187,8 @@ def summarize_group(df, group_cols):
         "avg_surplus_gap",
         ascending=False
     )
+    
+    summary["meets_min_group_size"] = summary["players_evaluated"] >= 10
 
     return summary
 
@@ -342,18 +368,23 @@ latest_market_watchlist[top_bargain_columns].to_csv(
 if os.path.exists(V4_LIFT_FILE):
     v4_lift = pd.read_csv(V4_LIFT_FILE)
 
-    v4_validation_context = v4_lift[
-        [
-            "position_final",
-            "players_model",
-            "players_baseline",
-            "hit_rate_model",
-            "hit_rate_baseline",
-            "hit_rate_lift",
-            "appearance_rate_lift",
-            "next_surplus_gap_lift",
-        ]
-    ].copy()
+    preferred_v4_columns = [
+        "position_final",
+        "players_model",
+        "players_baseline",
+        "hit_rate_model",
+        "hit_rate_baseline",
+        "hit_rate_lift",
+        "appearance_rate_lift",
+        "next_surplus_gap_lift",
+        "next_production_score_lift",
+    ]
+
+    v4_validation_columns = [
+        col for col in preferred_v4_columns if col in v4_lift.columns
+    ]
+
+    v4_validation_context = v4_lift[v4_validation_columns].copy()
 
     v4_validation_context.to_csv(
         f"{OUTPUT_DIR}/market_inefficiency_v4_position_validation_context.csv",
@@ -412,16 +443,24 @@ if len(position_summary) > 0:
     )
 
 
+headline_cost_tier_summary = cost_tier_summary[
+    cost_tier_summary["meets_min_group_size"] == True
+].copy()
+
+if len(headline_cost_tier_summary) == 0:
+    headline_cost_tier_summary = cost_tier_summary.copy()
+
 if len(cost_tier_summary) > 0:
     best_cost_tier = cost_tier_summary.iloc[0]
 
-    takeaway_rows.append(
+  takeaway_rows.append(
         {
             "finding": "Best position-cost archetype",
             "evidence": (
                 f"{best_cost_tier['position_final']} / "
                 f"{best_cost_tier['cost_tier']} had the highest average "
-                f"surplus gap ({best_cost_tier['avg_surplus_gap']:.2f})."
+                f"surplus gap among valid-cost groups "
+                f"({best_cost_tier['avg_surplus_gap']:.2f})."
             ),
             "interpretation": (
                 "The model is strongest when cost tier and position context "
@@ -432,7 +471,10 @@ if len(cost_tier_summary) > 0:
     )
 
 
-if "estimated_contract_stage" in contract_stage_summary.columns and len(contract_stage_summary) > 0:
+if (
+    "estimated_contract_stage" in contract_stage_summary.columns
+    and len(contract_stage_summary) > 0
+):
     best_contract_stage = contract_stage_summary.iloc[0]
 
     takeaway_rows.append(
@@ -452,27 +494,32 @@ if "estimated_contract_stage" in contract_stage_summary.columns and len(contract
 
 
 if len(v4_validation_context) > 0:
-    best_v4_position = (
-        v4_validation_context
-        .sort_values("hit_rate_lift", ascending=False)
-        .iloc[0]
-    )
+    preferred_v4_metric = "hit_rate_lift"
 
-    takeaway_rows.append(
-        {
-            "finding": "Strongest validated V4 position signal",
-            "evidence": (
-                f"{best_v4_position['position_final']} had the largest "
-                f"V4 hit-rate lift "
-                f"({best_v4_position['hit_rate_lift']:.3f}) versus the "
-                f"not-flagged rookie-contract baseline."
-            ),
-            "interpretation": (
-                "This is the cleanest bridge between descriptive market "
-                "inefficiency and next-season validation."
-            ),
-        }
-    )
+    if preferred_v4_metric in v4_validation_context.columns:
+        best_v4_position = (
+            v4_validation_context
+            .sort_values(preferred_v4_metric, ascending=False)
+            .iloc[0]
+        )
+
+        takeaway_rows.append(
+            {
+                "finding": "Strongest validated V4 position signal",
+                "evidence": (
+                    f"{best_v4_position['position_final']} had the largest "
+                    f"V4 hit-rate lift "
+                    f"({best_v4_position[preferred_v4_metric]:.3f}) versus the "
+                    f"not-flagged rookie-contract baseline."
+                ),
+                "interpretation": (
+                    "This is the cleanest bridge between descriptive market "
+                    "inefficiency and next-season validation. It should be "
+                    "interpreted as first-pass validation, not as a final "
+                    "prediction model."
+                ),
+            }
+        )
 
 
 market_takeaways = pd.DataFrame(takeaway_rows)
@@ -481,6 +528,7 @@ market_takeaways.to_csv(
     f"{OUTPUT_DIR}/market_inefficiency_takeaways_v3.csv",
     index=False
 )
+
 
 
 ## PRINT USEFUL VIEWS ##
