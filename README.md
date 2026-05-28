@@ -26,6 +26,7 @@ This is an ongoing portfolio project. The current version includes:
 - V3 draft-capital and contract-cycle context
 - V4 backtesting and latest-season candidate review
 - an interactive Streamlit dashboard
+- updated market-inefficiency analysis using confidence, draft-capital, contract-stage, and V4 validation context
 
 The newest V4 layer moves the project from descriptive rankings toward decision support by testing whether model-flagged rookie-contract surplus candidates outperform similar rookie-contract players the model did not flag.
 
@@ -277,8 +278,29 @@ Main V4 outputs include:
 - `candidate_review_model_misses.csv`
 - `candidate_review_missed_opportunities.csv`
 - `candidate_review_2025_watchlist.csv`
+- `candidate_review_bucket_summary.csv`
+- `candidate_review_performance_reference_by_group.csv`
+- `candidate_review_performance_lift_reference.csv`
 
 The V4 backtest compares model-flagged rookie-contract surplus candidates against high-confidence rookie-contract players the model did not flag.
+
+### Updated Market Inefficiency Outputs
+
+The updated market-inefficiency workflow uses the V3 confidence and contract-context player table.
+
+Main outputs are saved in `outputs_v3/summary/`, including:
+
+- `market_inefficiency_position_summary_v3.csv`
+- `market_inefficiency_cost_tier_summary_v3.csv`
+- `market_inefficiency_contract_stage_summary_v3.csv`
+- `market_inefficiency_position_contract_stage_summary_v3.csv`
+- `market_inefficiency_draft_capital_summary_v3.csv`
+- `market_inefficiency_position_draft_capital_summary_v3.csv`
+- `market_inefficiency_surplus_context_summary_v3.csv`
+- `market_inefficiency_top_bargains_by_position_v3.csv`
+- `market_inefficiency_2025_watchlist_v3.csv`
+- `market_inefficiency_v4_position_validation_context.csv`
+- `market_inefficiency_takeaways_v3.csv`
 
 ## Visualizations
 
@@ -560,7 +582,9 @@ Creates v2 confidence visuals showing sample-confidence, contract-confidence, ov
 
 ### `market_inefficiency.py`
 
-Summarizes player surplus value by position and cost tier to identify potential market inefficiencies.
+Summarizes market inefficiency using the V3 player-value table, including confidence, draft-capital, contract-stage, cost-tier, and surplus-context fields.
+
+This file updates the original cost-tier analysis by connecting descriptive market inefficiency to V4 validation context where available.
 
 ### `app.py`
 
@@ -587,7 +611,7 @@ Optional dashboard:
 ```bash
 streamlit run app.py
 ```
-Note: the Streamlit dashboard now uses the v2 confidence player outputs for the player-level sections, while team-level views still use the original team surplus outputs.
+Note: the Streamlit dashboard uses V3 player outputs for player-level sections, including V2 confidence fields and V3 contract-context fields. If V4 output files are available, the dashboard also shows threshold sensitivity, season stability, and the 2025 latest-season watchlist.
 
 ### V2 Confidence Workflow
 
@@ -629,6 +653,12 @@ New fields include:
 - estimated_contract_stage
 - is_likely_rookie_contract
 - surplus_context
+
+The v3 workflow includes:
+```text
+player_value_v3_contract_context.py
+market_inefficiency.py
+```
 
 The main v3 output is:
 
@@ -673,6 +703,7 @@ AND
 The V4 workflow includes:
 
 ```text
+market_inefficiency.py
 player_value_v4_backtest_clean.py
 player_value_v4_threshold_sensitivity.py
 player_value_v4_season_stability.py
@@ -707,8 +738,8 @@ Key limitations:
 - Defensive players and offensive linemen are not yet modeled.
 - Production-score weights are hand-built rather than statistically learned.
 - Rank gaps are intuitive but coarse and do not show the magnitude between players.
-- The model does not yet adjust for injuries, rookie-contract status, draft capital, scheme, teammates, coaching context, or strength of schedule.
-- Player value is ranked within position groups, so comparisons across positions should be made carefully.
+- Rookie-contract status and draft capital are estimated using public draft data; they are not a full contract-accounting or player-development model.
+- The model does not yet adjust for injuries, snap counts, scheme, teammates, coaching context, or strength of schedule.
 
 ## Future Improvements
 

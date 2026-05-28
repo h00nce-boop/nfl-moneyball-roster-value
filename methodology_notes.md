@@ -164,6 +164,39 @@ V4 creates human-readable review tables:
 
 The 2025 watchlist is not a backtest result. It identifies latest-season players who match the historically tested candidate profile and should be evaluated when 2026 data becomes available.
 
+### Candidate review summaries
+
+Candidate-review outputs are qualitative inspection tools, not the primary model-performance tables.
+
+The review buckets are defined by outcome type:
+
+- true positives
+- model misses
+- missed opportunities
+
+Because those buckets are outcome-defined, their summary table should not be interpreted as a hit-rate table. Model performance should be evaluated using:
+
+- `backtest_lift_model_vs_not_flagged_clean.csv`
+- `threshold_sensitivity_lift.csv`
+- `season_stability_lift_by_season.csv`
+- `candidate_review_performance_lift_reference.csv`
+
+## Market Inefficiency Analysis
+
+The updated market-inefficiency workflow uses the V3 player-value output rather than the original V1 player table.
+
+The analysis is limited to high-confidence player rows and summarizes surplus value by:
+
+- position
+- cost tier
+- estimated contract stage
+- draft-capital bucket
+- surplus context
+- position by contract stage
+- position by draft capital
+
+This connects the original market-efficiency question to the V3 contract-cycle model and the V4 validation layer.
+
 ## Current Limitations
 
 - Public contract data may be incomplete.

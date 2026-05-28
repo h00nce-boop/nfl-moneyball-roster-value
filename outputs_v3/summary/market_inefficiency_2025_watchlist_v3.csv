@@ -1,0 +1,77 @@
+season,player_name,team,position_final,production_score,total_epa,cap_number,cost_tier,player_surplus_gap,surplus_bucket,draft_year,draft_round,draft_pick,draft_capital_bucket,years_since_drafted,estimated_contract_stage,is_likely_rookie_contract,surplus_context,overall_confidence
+2025,Puka Nacua,LA,WR,281.28146136267435,125.03146136267434,1.091245,Low cost,74.0,elite_surplus,2023.0,5.0,177.0,rounds_4_5,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Parker Washington,JAX,WR,100.1458392066828,28.295839206682796,1.078066,Low cost,49.0,elite_surplus,2023.0,6.0,185.0,rounds_6_7,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Michael Wilson,ARI,WR,116.55218070236764,25.75218070236765,1.456217,Low cost,46.0,elite_surplus,2023.0,3.0,94.0,round_3,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Kayshon Boutte,NE,WR,90.66034117618686,36.86034117618686,1.076816,Low cost,46.0,elite_surplus,2023.0,6.0,187.0,rounds_6_7,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Ryan Flournoy,DAL,WR,76.1076776391556,29.107677639155597,0.906667,Low cost,40.0,elite_surplus,2024.0,6.0,216.0,rounds_6_7,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,George Pickens,DAL,WR,210.4427112801041,88.7427112801041,3.656,Low cost,39.0,elite_surplus,2022.0,2.0,52.0,round_2,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Jaxon Smith-Njigba,SEA,WR,241.9190039093038,90.7190039093038,3.931993,Low cost,37.0,elite_surplus,2023.0,1.0,20.0,round_1,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Chase Brown,CIN,RB,108.4795558652642,-14.570444134735812,1.101539,Low cost,36.0,elite_surplus,2023.0,5.0,163.0,rounds_4_5,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Zay Flowers,BAL,WR,152.0338582026944,48.883858202694384,3.82812,Low cost,34.0,elite_surplus,2023.0,1.0,22.0,round_1,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,De'Von Achane,MIA,RB,148.46097509414986,3.8109750941498586,1.482941,Low cost,33.0,elite_surplus,2023.0,3.0,84.0,round_3,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Tre Tucker,LV,WR,87.9493380499473,21.349338049947292,1.446568,Low cost,32.0,elite_surplus,2023.0,3.0,100.0,round_3,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Jacory Croskey-Merritt,WAS,RB,64.4034335730453,-5.496566426954698,0.866357,Low cost,32.0,elite_surplus,2025.0,7.0,245.0,rounds_6_7,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,DeMario Douglas,NE,WR,67.3250093571227,27.175009357122683,1.063333,Low cost,30.0,elite_surplus,2023.0,6.0,210.0,rounds_6_7,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Kyle Monangai,CHI,RB,63.25449328940423,-3.595506710595779,0.872035,Low cost,30.0,elite_surplus,2025.0,7.0,233.0,rounds_6_7,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Wan'Dale Robinson,NYG,WR,107.3345909378728,21.38459093787279,2.604371,Low cost,29.0,elite_surplus,2022.0,2.0,43.0,round_2,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Troy Franklin,DEN,WR,78.36723052168705,8.067230521687042,1.188709,Low cost,28.0,elite_surplus,2024.0,4.0,102.0,rounds_4_5,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Tyquan Thornton,KC,WR,61.89813281281208,26.24813281281208,1.040556,Low cost,28.0,elite_surplus,2022.0,2.0,50.0,round_2,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,AJ Barner,SEA,TE,95.82583467247532,35.175834672475304,1.148777,Low cost,26.0,elite_surplus,2024.0,4.0,121.0,rounds_4_5,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Alec Pierce,IND,WR,135.67911305843583,55.77911305843583,4.151244,Mid cost,25.0,elite_surplus,2022.0,2.0,53.0,round_2,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Rashee Rice,KC,WR,78.68194884641753,17.88194884641753,1.324598,Low cost,25.0,elite_surplus,2023.0,2.0,55.0,round_2,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Tez Johnson,TB,WR,54.28911757502706,15.089117575027055,0.870985,Low cost,25.0,elite_surplus,2025.0,7.0,235.0,rounds_6_7,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Drake Maye,NE,QB,288.08507712224093,175.04507712224094,8.327219,Mid cost,24.0,elite_surplus,2024.0,1.0,3.0,round_1,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Tyrone Tracy Jr.,NYG,RB,62.65427693713083,-9.745723062869166,1.031588,Low cost,24.0,elite_surplus,2024.0,5.0,166.0,rounds_4_5,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Luther Burden III,CHI,WR,84.55814341538935,32.35814341538935,1.993461,Low cost,23.0,elite_surplus,2025.0,2.0,39.0,round_2,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Bo Nix,DEN,QB,165.88789432636088,71.27789432636088,4.230265,Mid cost,22.0,elite_surplus,2024.0,1.0,12.0,round_1,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,RJ Harvey,DEN,RB,88.27971956746576,-4.270280432534236,1.338122,Low cost,22.0,elite_surplus,2025.0,2.0,60.0,round_2,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Chris Olave,NO,WR,138.78112816185646,30.781128161856444,6.131959,Mid cost,21.0,elite_surplus,2022.0,1.0,11.0,round_1,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Oronde Gadsden II,LAC,TE,70.96505532409869,16.515055324098682,0.933509,Low cost,20.0,elite_surplus,2025.0,5.0,165.0,rounds_4_5,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Cam Skattebo,NYG,RB,49.101339092737064,-8.74866090726294,0.913816,Low cost,20.0,elite_surplus,2025.0,4.0,105.0,rounds_4_5,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Kyren Williams,LA,RB,138.11627437536984,13.466274375369832,2.465102,Low cost,18.0,strong_surplus,2022.0,5.0,164.0,rounds_4_5,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Jaxson Dart,NYG,QB,126.86347932671816,41.54347932671816,3.086898,Low cost,18.0,strong_surplus,2025.0,1.0,25.0,round_1,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Romeo Doubs,GB,WR,102.59547256009007,34.645472560090084,3.576979,Low cost,18.0,strong_surplus,2022.0,4.0,132.0,rounds_4_5,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Tucker Kraft,GB,TE,89.04276139789144,38.442761397891445,1.510345,Low cost,18.0,strong_surplus,2023.0,3.0,78.0,round_3,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Xavier Hutchinson,HOU,WR,54.934920907799494,14.68492090779949,1.070925,Low cost,18.0,strong_surplus,2023.0,6.0,205.0,rounds_6_7,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Kimani Vidal,LAC,RB,41.599666600415354,-13.350333399584644,0.693333,Low cost,18.0,strong_surplus,2024.0,6.0,181.0,rounds_6_7,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Chris Rodriguez Jr.,WAS,RB,48.14746537129395,2.897465371293947,1.03,Low cost,17.5,strong_surplus,2023.0,6.0,193.0,rounds_6_7,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Jameson Williams,DET,WR,148.44272256089278,54.74272256089279,7.42181,Mid cost,17.0,strong_surplus,2022.0,1.0,12.0,round_1,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Colston Loveland,CHI,TE,114.68358338262718,46.63358338262719,4.84291,Mid cost,17.0,strong_surplus,2025.0,1.0,10.0,round_1,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,TreVeyon Henderson,NE,RB,106.4633030216752,11.113303021675186,2.026047,Low cost,17.0,strong_surplus,2025.0,2.0,38.0,round_2,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Ladd McConkey,LAC,WR,81.18522750449289,7.235227504492887,2.271633,Low cost,17.0,strong_surplus,2024.0,2.0,34.0,round_2,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Tetairoa McMillan,CAR,WR,114.48509608821286,25.28509608821285,5.078253,Mid cost,16.0,strong_surplus,2025.0,1.0,8.0,round_1,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Harold Fannin Jr.,CLE,TE,75.82929365714418,-0.3707063428558292,1.225979,Low cost,16.0,strong_surplus,2025.0,3.0,67.0,round_3,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,James Cook,BUF,RB,160.09799770077868,14.247997700778653,3.435375,Low cost,15.0,strong_surplus,2022.0,2.0,63.0,round_2,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Andrei Iosivas,CIN,WR,48.228240934587234,11.528240934587233,1.069848,Low cost,15.0,strong_surplus,2023.0,6.0,206.0,rounds_6_7,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Brenton Strange,JAX,TE,78.8647508115372,31.364750811537206,1.667548,Low cost,14.0,strong_surplus,2023.0,2.0,61.0,round_2,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Blake Corum,LA,RB,69.16041979973089,10.06041979973088,1.309946,Low cost,14.0,strong_surplus,2024.0,3.0,83.0,round_3,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Jahmyr Gibbs,DET,RB,180.2834518911758,15.083451891175766,4.866856,Mid cost,13.0,strong_surplus,2023.0,1.0,12.0,round_1,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,DeVonta Smith,PHI,WR,136.01954212163125,54.36954212163124,7.52451,Mid cost,13.0,strong_surplus,2021.0,1.0,10.0,round_1,4.0,possible_fifth_year_option,True,rookie_contract_surplus,high
+2025,Christian Watson,GB,WR,89.5377431172806,32.0877431172806,3.336665,Low cost,13.0,strong_surplus,2022.0,2.0,34.0,round_2,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Emeka Egbuka,TB,WR,86.5614994226421,5.461499422642091,3.304133,Low cost,13.0,strong_surplus,2025.0,1.0,19.0,round_1,0.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Zach Charbonnet,SEA,RB,84.2173228998953,-0.4826771001047074,1.875294,Low cost,13.0,strong_surplus,2023.0,2.0,52.0,round_2,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Trey McBride,ARI,TE,199.16636689027308,72.71636689027306,9.594393,Mid cost,12.0,strong_surplus,2022.0,2.0,55.0,round_2,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Caleb Williams,CHI,QB,159.06323686768334,52.89323686768335,8.974104,Mid cost,12.0,strong_surplus,2024.0,1.0,1.0,round_1,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Quentin Johnston,LAC,WR,97.3900605425204,23.54006054252039,3.869669,Low cost,12.0,strong_surplus,2023.0,1.0,21.0,round_1,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Dalton Kincaid,BUF,TE,92.68840316268242,39.38840316268242,3.66192,Low cost,12.0,strong_surplus,2023.0,1.0,25.0,round_1,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Sam LaPorta,DET,TE,79.8778423127509,36.4278423127509,2.581636,Low cost,12.0,strong_surplus,2023.0,2.0,34.0,round_2,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Mac Jones,SF,QB,73.92734438676331,39.417344386763304,2.558,Low cost,12.0,strong_surplus,2021.0,1.0,15.0,round_1,4.0,possible_fifth_year_option,True,rookie_contract_surplus,high
+2025,Theo Johnson,NYG,TE,61.48237116280326,8.832371162803263,1.167859,Low cost,12.0,strong_surplus,2024.0,4.0,107.0,rounds_4_5,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Bijan Robinson,ATL,RB,181.98520651349455,14.335206513494558,5.988694,Mid cost,11.0,strong_surplus,2023.0,1.0,8.0,round_1,2.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Brock Bowers,LV,TE,93.29312266775398,22.193122667753975,4.122451,Mid cost,10.0,strong_surplus,2024.0,1.0,13.0,round_1,1.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Jake Ferguson,DAL,TE,92.9158242648256,18.365824264825605,3.98222,Low cost,10.0,strong_surplus,2022.0,4.0,129.0,rounds_4_5,3.0,rookie_contract,True,rookie_contract_surplus,high
+2025,Tyler Warren,IND,TE,86.21768706134586,10.967687061345847,3.811027,Low cost,9.0,positive_surplus,2025.0,1.0,14.0,round_1,0.0,rookie_contract,True,pre_extension_breakout,high
+2025,Jayden Higgins,HOU,WR,71.25768278479529,16.757682784795296,2.127422,Low cost,9.0,positive_surplus,2025.0,2.0,34.0,round_2,0.0,rookie_contract,True,pre_extension_breakout,high
+2025,Jalen Nailor,MIN,WR,52.39058400597847,10.290584005978468,1.145165,Low cost,9.0,positive_surplus,2022.0,6.0,191.0,rounds_6_7,3.0,rookie_contract,True,pre_extension_breakout,high
+2025,Woody Marks,HOU,RB,44.60120295525152,-21.948797044748485,1.090942,Low cost,9.0,positive_surplus,2025.0,4.0,116.0,rounds_4_5,0.0,rookie_contract,True,pre_extension_breakout,high
+2025,Brock Purdy,SF,QB,134.59202882330524,79.32202882330523,9.119253,Mid cost,8.0,positive_surplus,2022.0,7.0,262.0,rounds_6_7,3.0,rookie_contract,True,pre_extension_breakout,high
+2025,Josh Downs,IND,WR,61.83588007382251,7.135880073822511,1.505577,Low cost,8.0,positive_surplus,2023.0,3.0,79.0,round_3,2.0,rookie_contract,True,pre_extension_breakout,high
+2025,Tyler Shough,NO,QB,45.47311623842555,3.083116238425554,1.964496,Low cost,8.0,positive_surplus,2025.0,2.0,40.0,round_2,0.0,rookie_contract,True,pre_extension_breakout,high
+2025,Trevor Lawrence,JAX,QB,172.97147994854305,64.20147994854305,17.0,High cost,7.0,positive_surplus,2021.0,1.0,1.0,round_1,4.0,possible_fifth_year_option,True,pre_extension_breakout,high
+2025,Drake London,ATL,WR,108.730595332661,24.780595332661015,6.851878,Mid cost,7.0,positive_surplus,2022.0,1.0,8.0,round_1,3.0,rookie_contract,True,pre_extension_breakout,high
+2025,Khalil Shakir,BUF,WR,73.59672388869093,7.396723888690929,2.586788,Low cost,7.0,positive_surplus,2022.0,5.0,148.0,rounds_4_5,3.0,rookie_contract,True,pre_extension_breakout,high
+2025,Tyler Allgeier,ATL,RB,49.22810069334861,-8.771899306651394,1.183472,Low cost,7.0,positive_surplus,2022.0,5.0,151.0,rounds_4_5,3.0,rookie_contract,True,pre_extension_breakout,high
+2025,Elic Ayomanor,TEN,WR,38.404296503543975,-9.595703496456029,1.006454,Low cost,7.0,positive_surplus,2025.0,4.0,136.0,rounds_4_5,0.0,rookie_contract,True,pre_extension_breakout,high
+2025,Dontayvion Wicks,GB,WR,45.052123921150574,14.652123921150574,1.105636,Low cost,6.0,positive_surplus,2023.0,5.0,159.0,rounds_4_5,2.0,rookie_contract,True,pre_extension_breakout,high
+2025,C.J. Stroud,HOU,QB,122.81344646764003,62.70344646764005,9.894339,Mid cost,5.0,positive_surplus,2023.0,1.0,2.0,round_1,2.0,rookie_contract,True,pre_extension_breakout,high
+2025,Jaylen Waddle,MIA,WR,116.76881092795584,35.788810927955865,8.020709,Mid cost,5.0,positive_surplus,2021.0,1.0,6.0,round_1,4.0,possible_fifth_year_option,True,pre_extension_breakout,high

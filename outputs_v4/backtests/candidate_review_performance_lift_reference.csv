@@ -1,0 +1,2 @@
+comparison,players_model,players_baseline,hit_rate_model,hit_rate_baseline,hit_rate_lift,appearance_rate_model,appearance_rate_baseline,appearance_rate_lift,avg_next_surplus_gap_model,avg_next_surplus_gap_baseline,next_surplus_gap_lift
+model_candidates_vs_not_flagged_baseline,252,208,0.5793650793650794,0.47596153846153844,0.10340354090354098,0.8531746031746031,0.6490384615384616,0.20413614163614158,8.418604651162791,-1.962962962962963,10.381567614125755

@@ -210,7 +210,14 @@ watchlist_2025["watchlist_note"] = (
 )
 
 
-## REVIEW SUMMARY ##
+## REVIEW BUCKET SUMMARY ##
+# These review groups are defined by outcome type, so this summary should
+# not be interpreted as a model-performance table.
+#
+# Performance should be evaluated using:
+# - backtest_lift_model_vs_not_flagged_clean.csv
+# - threshold_sensitivity_lift.csv
+# - season_stability_lift_by_season.csv
 
 review_frames = [
     top_true_positives,
@@ -223,9 +230,45 @@ review_combined = pd.concat(
     ignore_index=True
 )
 
-candidate_review_summary = (
+candidate_review_bucket_summary = (
     review_combined
     .groupby("review_group", as_index=False)
+    .agg(
+        players=("player_id", "count"),
+        appeared_next_year=("appeared_next_year", "sum"),
+        avg_candidate_surplus_gap=("player_surplus_gap", "mean"),
+        avg_next_surplus_gap=("next_player_surplus_gap", "mean"),
+        avg_candidate_production_score=("production_score", "mean"),
+        avg_next_production_score=("next_production_score", "mean"),
+    )
+)
+
+candidate_review_bucket_summary["appearance_rate"] = (
+    candidate_review_bucket_summary["appeared_next_year"] /
+    candidate_review_bucket_summary["players"]
+)
+
+candidate_review_bucket_summary["summary_type"] = "qualitative_review_bucket"
+
+candidate_review_bucket_summary["interpretation_note"] = (
+    "Review buckets are outcome-defined, so this table should not be used "
+    "as a model-performance table. Use V4 backtest lift, threshold sensitivity, "
+    "and season stability outputs for performance evaluation."
+)
+
+candidate_review_bucket_summary = candidate_review_bucket_summary.sort_values(
+    "review_group"
+)
+
+
+## PERFORMANCE REFERENCE SUMMARY ##
+# This table uses the actual backtest groups as denominators, so these rates
+# are interpretable as performance reference metrics.
+
+performance_reference = (
+    backtest
+    .loc[backtest["group"].isin(["model_candidates", "not_flagged_baseline"])]
+    .groupby("group", as_index=False)
     .agg(
         players=("player_id", "count"),
         appeared_next_year=("appeared_next_year", "sum"),
@@ -237,28 +280,62 @@ candidate_review_summary = (
     )
 )
 
-candidate_review_summary["appearance_rate"] = (
-    candidate_review_summary["appeared_next_year"] /
-    candidate_review_summary["players"]
+performance_reference["appearance_rate"] = (
+    performance_reference["appeared_next_year"] /
+    performance_reference["players"]
 )
 
-candidate_review_summary["hit_rate"] = (
-    candidate_review_summary["hits"] /
-    candidate_review_summary["players"]
+performance_reference["hit_rate"] = (
+    performance_reference["hits"] /
+    performance_reference["players"]
 )
 
-candidate_review_summary = candidate_review_summary.sort_values(
-    "review_group"
+model_row = performance_reference[
+    performance_reference["group"] == "model_candidates"
+].iloc[0]
+
+baseline_row = performance_reference[
+    performance_reference["group"] == "not_flagged_baseline"
+].iloc[0]
+
+performance_lift_reference = pd.DataFrame(
+    [
+        {
+            "comparison": "model_candidates_vs_not_flagged_baseline",
+            "players_model": model_row["players"],
+            "players_baseline": baseline_row["players"],
+            "hit_rate_model": model_row["hit_rate"],
+            "hit_rate_baseline": baseline_row["hit_rate"],
+            "hit_rate_lift": model_row["hit_rate"] - baseline_row["hit_rate"],
+            "appearance_rate_model": model_row["appearance_rate"],
+            "appearance_rate_baseline": baseline_row["appearance_rate"],
+            "appearance_rate_lift": (
+                model_row["appearance_rate"] - baseline_row["appearance_rate"]
+            ),
+            "avg_next_surplus_gap_model": model_row["avg_next_surplus_gap"],
+            "avg_next_surplus_gap_baseline": baseline_row["avg_next_surplus_gap"],
+            "next_surplus_gap_lift": (
+                model_row["avg_next_surplus_gap"] -
+                baseline_row["avg_next_surplus_gap"]
+            ),
+        }
+    ]
 )
 
 
 ## PRINT USEFUL VIEWS ##
 
-summary_view = candidate_review_summary.copy()
-summary_view = summary_view.round(3)
+bucket_summary_view = candidate_review_bucket_summary.copy()
+bucket_summary_view = bucket_summary_view.round(3)
 
-print("\nCandidate review summary:")
-print(summary_view.to_string(index=False))
+print("\nCandidate review bucket summary:")
+print(bucket_summary_view.to_string(index=False))
+
+performance_reference_view = performance_lift_reference.copy()
+performance_reference_view = performance_reference_view.round(3)
+
+print("\nCandidate review performance reference:")
+print(performance_reference_view.to_string(index=False))
 
 print_preview(
     "Top true positives",
@@ -322,8 +399,24 @@ watchlist_2025[
     index=False
 )
 
-candidate_review_summary.to_csv(
+candidate_review_bucket_summary.to_csv(
+    f"{OUTPUT_DIR}/candidate_review_bucket_summary.csv",
+    index=False
+)
+
+# Backward-compatible filename, but now without misleading hit-rate columns.
+candidate_review_bucket_summary.to_csv(
     f"{OUTPUT_DIR}/candidate_review_summary.csv",
+    index=False
+)
+
+performance_reference.to_csv(
+    f"{OUTPUT_DIR}/candidate_review_performance_reference_by_group.csv",
+    index=False
+)
+
+performance_lift_reference.to_csv(
+    f"{OUTPUT_DIR}/candidate_review_performance_lift_reference.csv",
     index=False
 )
 
