@@ -476,3 +476,9 @@ It is:
 > Find production before the market prices it as proven production.
 
 In NFL roster-building terms, the edge comes from identifying value one contract cycle early while being honest about the limits of public data.
+
+## Rights and Usage
+
+This project is source-available for portfolio review only. All code, analysis, documentation, and original visualizations are copyright © 2026 [Your Name]. All rights reserved.
+
+Please do not copy, redistribute, modify, or use this work without written permission.
