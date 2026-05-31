@@ -1,4 +1,4 @@
-Copyright © 2026 [Hannah Levy]. All rights reserved.
+Copyright © 2026 **Hannah Levy**. All rights reserved.
 
 This repository is made publicly viewable for portfolio and evaluation purposes only.
 

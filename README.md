@@ -479,6 +479,6 @@ In NFL roster-building terms, the edge comes from identifying value one contract
 
 ## Rights and Usage
 
-This project is source-available for portfolio review only. All code, analysis, documentation, and original visualizations are copyright © 2026 [Your Name]. All rights reserved.
+This project is source-available for portfolio review only. All code, analysis, documentation, and original visualizations are copyright © 2026 **Hannah Levy**. All rights reserved.
 
 Please do not copy, redistribute, modify, or use this work without written permission.
