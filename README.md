@@ -1,5 +1,9 @@
 # NFL Moneyball: Finding Roster Surplus Value Under the Salary Cap
 
+🌐 **Interactive Portfolio Website:** https://nfl-moneyball.vercel.app  
+📊 **Live Streamlit Dashboard:** https://nfl-moneyball-roster-value.streamlit.app  
+💻 **Source Code:** https://github.com/h00nce-boop/nfl-moneyball-roster-value  
+
 ## Project Overview
 
 This project builds a public-data NFL roster value model inspired by *Moneyball*.
