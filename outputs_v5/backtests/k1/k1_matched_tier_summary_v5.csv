@@ -1,0 +1,4 @@
+match_tier,matched_candidates,avg_matched_controls,avg_match_distance,median_match_distance,primary_v5_candidate_rate,primary_v5_matched_control_rate,primary_v5_lift,primary_v5_lift_pp
+tier_1_same_season_position_draft_bucket_contract_stage,228,1.0,0.5961270098747461,0.5218584709133951,0.5482456140350878,0.4517543859649123,0.09649122807017546,9.649122807017546
+tier_2_same_season_position_draft_bucket,1,1.0,0.9990685342004979,0.9990685342004979,1.0,0.0,1.0,100.0
+tier_3_same_season_position_contract_stage,23,1.0,0.4096131353329337,0.3697764946612336,0.6956521739130435,0.5652173913043478,0.13043478260869568,13.043478260869568
