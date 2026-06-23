@@ -51,14 +51,16 @@ It starts with:
 
 This project uses public NFL data through [`nflreadpy`](https://nflreadpy.nflverse.com/), including:
 
-- player statistics
-- passing, rushing, and receiving EPA fields
+- player statistics, including public `passing_epa`, `rushing_epa`, and `receiving_epa` fields
+- play-by-play-derived EPA context
 - team statistics
 - roster data
 - public contract data
 - draft data
 - snap-count data
 - injury-report data
+
+EPA is not privately sourced from a club or league-office system; it comes from the public NFL data ecosystem loaded through `nflreadpy`.
 
 The model covers the 2021, 2022, 2023, 2024, and 2025 NFL seasons.
 
@@ -109,6 +111,12 @@ player surplus gap = 31 - 12 = +19
 ```
 
 That does **not** prove the player is objectively underpaid. It means the player produced ahead of his public cost rank and should be reviewed in context.
+
+Rank direction matters:
+
+- `production_rank_position`: lower is better. Rank 1 is the highest production score within that season and position.
+- `cost_rank_position`: lower is more expensive. Rank 1 is the highest public cap number within that season and position.
+- `player_surplus_gap`: higher is better for this screen. A positive gap means the player produced ahead of his public cost rank.
 
 ## V5 candidate definition
 
@@ -240,7 +248,7 @@ Public-facing column labels are intentionally readable. For example:
 | --- | --- |
 | `player_surplus_gap` | Value Gap |
 | `production_rank_position` | Production Rank Within Position |
-| `cost_rank_position` | Cost Rank Within Position |
+| `cost_rank_position` | Public Cost Rank Within Position |
 | `cap_number` | Public Cap Cost ($M) |
 | `candidate_rate` | Candidate Rate |
 | `matched_control_rate` | Matched-Control Rate |

@@ -3,12 +3,13 @@
 NFL Moneyball decision-support dashboard.
 
 This version is intentionally stripped back for a first-time football-ops or
-analytics reader. It keeps the app organized around four practical questions:
+analytics reader. It keeps the app organized around five practical questions:
 
 1. What is the signal?
 2. Which players should I review?
 3. What does the team context look like?
 4. How did the signal validate historically?
+5. What are the limits of the signal?
 
 Run with:
 streamlit run app.py
@@ -201,12 +202,20 @@ def normalize_player_table(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def load_player_table() -> tuple[pd.DataFrame, Optional[Path], str]:
+    """
+    Load the main player table for the V5 app.
+
+    V5 files must be tried first so the dashboard does not silently fall back
+    to older V3/V4 player-value outputs when V5 files are present.
+    """
     player_paths = [
-        "outputs_v3/player_value_2021_2025_v3_contract_context.csv",
-        "outputs_v4/player_value_2021_2025_player_season_clean.csv",
+        "outputs_v5/features/player_season_features_v5.csv",
         "outputs_v5/outcomes/player_season_outcomes_v5.csv",
         "outputs_v5/outcomes/historical_validation_rows_v5.csv",
+        "outputs_v4/player_value_2021_2025_player_season_clean.csv",
+        "outputs_v3/player_value_2021_2025_v3_contract_context.csv",
     ]
+
     df, path = load_first_csv("player table", player_paths)
     if not df.empty:
         return normalize_player_table(df), path, "csv"
@@ -398,7 +407,7 @@ COLUMN_LABELS = {
     "cap_number": "Public Cap Cost ($M)",
     "cash_paid": "Cash Paid ($M)",
     "production_rank_position": "Production Rank Within Position",
-    "cost_rank_position": "Cost Rank Within Position",
+    "cost_rank_position": "Public Cost Rank Within Position",
     "player_surplus_gap": "Value Gap",
     "player_surplus_rank": "Value Rank",
     "player_value_tier": "Value Tier",
@@ -412,7 +421,7 @@ COLUMN_LABELS = {
     "overall_confidence": "Confidence",
     "is_likely_rookie_contract": "Likely Rookie Contract",
     "overall_rank": "Performance Rank",
-    "cap_cost_rank": "Cost Rank",
+    "cap_cost_rank": "Team Public Cost Rank",
     "surplus_rank_gap": "Team Value Gap",
     "surplus_value_rank": "Team Value Rank",
     "surplus_tier": "Team Value Tier",
@@ -666,20 +675,48 @@ def render_player_read(row: pd.Series, source_df: pd.DataFrame, *, context: str)
 
     st.subheader(f"{player} | {season_value} {team_value} {pos}")
     col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric("Value Gap", fmt_gap(value_gap), help="Cost rank within position minus production rank within position.")
-    with col2:
-        st.metric("Production Rank", format_rank(prod_rank), help="Lower rank is better within the position.")
-    with col3:
-        st.metric("Cost Rank", format_rank(cost_rank), help="Lower rank means more expensive within the position.")
-    with col4:
-        st.metric("Public Cap Cost", fmt_number(cap_number, decimals=2, prefix="$", suffix="M"))
 
-    st.write(
-        f"Model read: {player} ranked {format_rank(prod_rank)} in production within {pos} and "
-        f"{format_rank(cost_rank)} in public cost within {pos}, producing a value gap of {fmt_gap(value_gap)}."
+    with col1:
+        st.metric(
+            "Value Gap",
+            fmt_gap(value_gap),
+            help=(
+                "Public cost rank minus production rank within position. "
+                "Positive means production outran public cost."
+        ),
     )
 
+    with col2:
+        st.metric(
+            "Production Rank",
+            format_rank(prod_rank),
+            help="Lower is better within the same season and position.",
+        )
+
+    with col3:
+        st.metric(
+            "Public Cost Rank",
+            format_rank(cost_rank),
+            help=(
+                "Lower means more expensive within the same season and position; "
+                "larger ranks usually mean cheaper public cost."
+        ),
+    )
+
+    with col4:
+        st.metric(
+            "Public Cap Cost",
+            fmt_number(cap_number, decimals=2, prefix="$", suffix="M"),
+            help="Public contract-cost proxy, not official club cap accounting.",
+        )
+
+    st.write(
+    f"Model read: {player} ranked {format_rank(prod_rank)} in production within {pos} "
+    f"and {format_rank(cost_rank)} in public cost within {pos}. "
+    f"That creates a value gap of {fmt_gap(value_gap)}. "
+    "Positive value gap means the player produced ahead of his public cost rank."
+    )
+    
     if context == "candidate":
         st.info(
             "This is a review queue row, not a signing recommendation. A team would still check film, "
@@ -734,8 +771,8 @@ def render_player_read(row: pd.Series, source_df: pd.DataFrame, *, context: str)
 def require_data() -> None:
     if PLAYER_VALUE.empty:
         st.error(
-            "No player-value table was found. Expected `outputs_v3/player_value_2021_2025_v3_contract_context.csv` "
-            "or another supported player output."
+            "No player-value table was found. Expected `outputs_v5/features/player_season_features_v5.csv` "
+            "or another supported V5/V4/V3 player output."
         )
         st.stop()
 
@@ -1053,7 +1090,7 @@ elif page == "Find Players":
         st.subheader("V5 surplus shortlist")
         st.caption(
             "This is the narrower decision-support board: it defaults to rookie-contract players "
-            "with a positive value gap."
+            "with a Value Gap of at least +5."
         )
 
         if not WATCHLIST.empty:
@@ -1429,7 +1466,7 @@ elif page == "Methodology and Limits":
         The player model ranks players within position by production and by public contract-cost proxy.
 
         ```text
-        player_value_gap = cost_rank_within_position - production_rank_within_position
+        player_surplus_gap = cost_rank_within_position - production_rank_within_position
         ```
 
         A positive gap means the player produced better than his public cost rank. A negative gap means the player was expensive relative to his production rank.
@@ -1443,7 +1480,7 @@ elif page == "Methodology and Limits":
 
         ```text
         likely rookie contract == True
-        and player value gap >= 5
+        and player surplus gap >= 5
         ```
 
         Candidates are compared with similar rookie-contract non-candidates by season, position, draft-capital bucket, contract stage, production percentile, and regular-season opportunity.
